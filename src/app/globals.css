@@ -6,7 +6,7 @@
 
 :root  {
   --background: 1 100% 95%;
-  --foreground: 1 5% 0%;
+  --foreground: 234 43% 9%;
   --card: 1 50% 90%;
   --card-foreground: 1 5% 10%;
   --popover: 1 100% 95%;
@@ -27,7 +27,7 @@
   --radius: 0.5rem;
 }
 .dark  {
-  --background: 1 50% 5%;
+  --background: 234 43% 9%;
   --foreground: 1 5% 90%;
   --card: 1 50% 0%;
   --card-foreground: 1 5% 90%;
