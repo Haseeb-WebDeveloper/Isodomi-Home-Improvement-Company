@@ -19,7 +19,7 @@ const faqs = [
           <li>Completing all finishing touches, including plastering, skirting, and painting</li>
           <li>Leaving the work area clean and tidy</li>
         </ul>
-        <p>You don't need to hire multiple contractors; we take care of everything in one go.</p>
+        <p>You don&apos;t need to hire multiple contractors; we take care of everything in one go.</p>
       </>
     ),
   },
@@ -69,11 +69,11 @@ const faqs = [
   },
   {
     question: "Do I need to be home during the work?",
-    answer: "You don't need to be present all day during the work. However, we do ask you to be available at the start of the workday for final coordination and at the end for a final inspection and handover.",
+    answer: "You don&apos;t need to be present all day during the work. However, we do ask you to be available at the start of the workday for final coordination and at the end for a final inspection and handover.",
   },
 ];
 
-function FAQItem({ question, answer, isOpen, onToggle, index }: any) {
+function FAQItem({ question, answer, isOpen, onToggle, index }: { question: string; answer: React.ReactNode; isOpen: boolean; onToggle: () => void; index: number; }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -189,15 +189,12 @@ export function FAQSection() {
             className="mt-12 pt-8 text-center border-t border-primary/10"
           >
             <Link href="#contact" className="text-muted-foreground">
-              Can't find what you're looking for? 
+              Can&apos;t find what you&apos;re looking for? 
               <Link href="#contact" className="text-primary hover:text-primary/80 font-medium ml-2 transition-colors">
                 Contact Us
               </Link>
             </Link>
           </motion.div>
-
-
-
         </div>
       </div>
     </section>

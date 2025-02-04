@@ -70,7 +70,7 @@ export function AboutSection() {
               </p>
               
               <p>
-                At Isodomi, we understand that every home is unique. That's why we offer 
+                At Isodomi, we understand that every home is unique. That&apos;s why we offer 
                 personalized advice and tailor-made solutions that perfectly match your 
                 situation and needs. From the first inspection to the final finishing, 
                 you can count on our professional approach and quality guarantee.

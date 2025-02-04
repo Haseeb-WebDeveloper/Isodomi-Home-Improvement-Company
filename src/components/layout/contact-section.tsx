@@ -51,10 +51,12 @@ export function ContactSection() {
       toast.success("Message sent successfully! We'll get back to you soon.");
       setFormData(initialFormData);
     } catch (error) {
+      console.error('Error sending message:', error);
       toast.error("Failed to send message. Please try again later.");
     } finally {
       setIsLoading(false);
     }
+
   };
 
   return (
@@ -76,9 +78,9 @@ export function ContactSection() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-4xl font-bold mb-6">Let's Start Your Project</h2>
+                <h2 className="text-4xl font-bold mb-6">Let&apos;s Start Your Project</h2>
                 <p className="text-muted-foreground">
-                  Ready to improve your home's energy efficiency? We're here to help you every step of the way.
+                  Ready to improve your home&apos;s energy efficiency? We&apos;re here to help you every step of the way.
                 </p>
               </div>
 
@@ -193,7 +195,7 @@ export function ContactSection() {
                       </div>
                       <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
                       <p className="text-muted-foreground mb-6">
-                        Thank you for contacting us. We'll get back to you within 24-48 hours.
+                        Thank you for contacting us. We&apos;ll get back to you within 24-48 hours.
                       </p>
                       <Button
                         onClick={() => setShowSuccess(false)}
