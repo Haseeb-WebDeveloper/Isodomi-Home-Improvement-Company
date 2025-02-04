@@ -10,10 +10,10 @@ export function HeroSection() {
     <div id="hero" className="mt-20 flex flex-col items-center justify-center overflow-hidden">
       {/* Animated background patterns */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
+        {/* <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" /> */}
 
 
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/80 to-background" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/80 to-background" /> */}
       </div>
 
       {/* Floating geometric shapes */}
@@ -63,7 +63,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-muted-foreground text-lg md:text-xl mb-12 max-w-3xl mx-auto"
+          className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto"
         >
           Experience excellence in construction with our innovative solutions. 
           We bring together cutting-edge technology and expert craftsmanship to 
