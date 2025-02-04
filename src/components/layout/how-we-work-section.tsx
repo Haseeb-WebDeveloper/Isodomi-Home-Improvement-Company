@@ -79,7 +79,7 @@ export function HowWeWorkSection() {
         >
           <h2 className="text-4xl font-bold mb-6">How We Work</h2>
           <p className="text-muted-foreground text-lg">
-            At Isodomi, transparency, efficiency, and reliability are at the core of our operations:
+            At Renodomi, transparency, efficiency, and reliability are at the core of our operations:
           </p>
         </motion.div>
 

@@ -57,7 +57,7 @@ export function AboutSection() {
             
             <div className="space-y-6 text-muted-foreground">
               <p>
-                Isodomi is a specialized insulation company focused on making homes and 
+                Renodomi is a specialized insulation company focused on making homes and 
                 commercial buildings more energy-efficient across central Netherlands. 
                 As experts in roof, facade, and floor insulation, we have extensive 
                 experience in the insulation industry.
@@ -70,7 +70,7 @@ export function AboutSection() {
               </p>
               
               <p>
-                At Isodomi, we understand that every home is unique. That&apos;s why we offer 
+                At Renodomi, we understand that every home is unique. That&apos;s why we offer 
                 personalized advice and tailor-made solutions that perfectly match your 
                 situation and needs. From the first inspection to the final finishing, 
                 you can count on our professional approach and quality guarantee.

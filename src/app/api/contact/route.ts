@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, address, message } = await req.json();
+    const { name, email, phone, address, message, services } = await req.json();
 
     // Validate required fields
     if (!name || !email || !phone || !address) {
@@ -12,6 +12,12 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
+    // Format selected services for email
+    const selectedServices = Object.entries(services)
+      .filter(([_, isSelected]) => isSelected)
+      .map(([service]) => service.charAt(0).toUpperCase() + service.slice(1) + " Insulation")
+      .join(", ");
 
     // Create email transporter
     const transporter = nodemailer.createTransport({
@@ -35,6 +41,7 @@ export async function POST(req: Request) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Address:</strong> ${address}</p>
+          <p><strong>Services Required:</strong> ${selectedServices || "None selected"}</p>
         </div>
 
         ${message ? `
@@ -53,7 +60,7 @@ export async function POST(req: Request) {
     // Setup email data
     const mailOptions = {
       from: {
-        name: "Isodomi Website",
+        name: "Renodomi Website",
         address: process.env.SENDER_EMAIL!
       },
       to: process.env.SENDER_EMAIL,
@@ -68,14 +75,14 @@ export async function POST(req: Request) {
     // Send auto-reply to the customer
     const autoReplyOptions = {
       from: {
-        name: "Isodomi",
+        name: "Renodomi",
         address: process.env.SENDER_EMAIL!
       },
       to: email,
-      subject: "Thank you for contacting Isodomi",
+      subject: "Thank you for contacting Renodomi",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Thank You for Contacting Isodomi</h2>
+          <h2 style="color: #333;">Thank You for Contacting Renodomi</h2>
           
           <p>Dear ${name},</p>
           
@@ -91,7 +98,7 @@ export async function POST(req: Request) {
           
           <p>If you need immediate assistance, please call us at +31 (0) 123 456 789.</p>
           
-          <p style="margin-top: 20px;">Best regards,<br>The Isodomi Team</p>
+          <p style="margin-top: 20px;">Best regards,<br>The Renodomi Team</p>
           
           <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #eee; color: #666; font-size: 12px;">
             <p>This is an automated response. Please do not reply to this email.</p>

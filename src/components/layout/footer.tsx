@@ -76,7 +76,7 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="text-xl font-bold text-primary">
-              <Image src="/logo-with-text.png" alt="Isodomi" width={100} height={100} />
+              <Image src="/logo-with-text.png" alt="Renodomi" width={100} height={100} />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Professional insulation solutions for homes and businesses across central Netherlands.
@@ -151,7 +151,7 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-primary/10">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Isodomi. All rights reserved.
+              © {new Date().getFullYear()} Renodomi. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
               <Link

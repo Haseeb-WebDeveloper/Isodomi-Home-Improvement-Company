@@ -59,10 +59,10 @@ export function WhyChooseSection2() {
           className="text-center mb-12"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-            Why Choose Isodomi?
+            Why Choose Renodomi?
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Isodomi is a construction company that builds homes for people. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients.
+            Renodomi is a construction company that builds homes for people. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients.
           </p>
         </motion.div>
 

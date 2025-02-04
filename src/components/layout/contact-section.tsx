@@ -16,6 +16,11 @@ interface FormData {
   phone: string;
   address: string;
   message: string;
+  services: {
+    roof: boolean;
+    facade: boolean;
+    floor: boolean;
+  };
 }
 
 const initialFormData: FormData = {
@@ -24,6 +29,11 @@ const initialFormData: FormData = {
   phone: "",
   address: "",
   message: "",
+  services: {
+    roof: false,
+    facade: false,
+    floor: false,
+  }
 };
 
 export function ContactSection() {
@@ -145,7 +155,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@isodomi.nl</p>
+                    <p className="text-muted-foreground">info@Renodomi.nl</p>
                   </div>
                 </div>
               </div>
@@ -256,6 +266,93 @@ export function ContactSection() {
                           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                           required
                         />
+                      </div>
+
+                      {/* Services Checklist */}
+                      <div className="space-y-2">
+                        <Label>Services Required</Label>
+                        <div className="grid sm:grid-cols-3 gap-4">
+                          <div className="relative flex items-center">
+                            <input
+                              type="checkbox"
+                              id="roof"
+                              checked={formData.services.roof}
+                              onChange={(e) => setFormData({
+                                ...formData,
+                                services: {
+                                  ...formData.services,
+                                  roof: e.target.checked
+                                }
+                              })}
+                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
+                            />
+                            <Label 
+                              htmlFor="roof"
+                              className="ml-2 text-sm font-normal cursor-pointer"
+                            >
+                              Roof Insulation
+                            </Label>
+                            <motion.div
+                              initial={false}
+                              animate={formData.services.roof ? { scale: 1 } : { scale: 0 }}
+                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
+                            />
+                          </div>
+
+                          <div className="relative flex items-center">
+                            <input
+                              type="checkbox"
+                              id="facade"
+                              checked={formData.services.facade}
+                              onChange={(e) => setFormData({
+                                ...formData,
+                                services: {
+                                  ...formData.services,
+                                  facade: e.target.checked
+                                }
+                              })}
+                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
+                            />
+                            <Label 
+                              htmlFor="facade"
+                              className="ml-2 text-sm font-normal cursor-pointer"
+                            >
+                              Facade Insulation
+                            </Label>
+                            <motion.div
+                              initial={false}
+                              animate={formData.services.facade ? { scale: 1 } : { scale: 0 }}
+                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
+                            />
+                          </div>
+
+                          <div className="relative flex items-center">
+                            <input
+                              type="checkbox"
+                              id="floor"
+                              checked={formData.services.floor}
+                              onChange={(e) => setFormData({
+                                ...formData,
+                                services: {
+                                  ...formData.services,
+                                  floor: e.target.checked
+                                }
+                              })}
+                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
+                            />
+                            <Label 
+                              htmlFor="floor"
+                              className="ml-2 text-sm font-normal cursor-pointer"
+                            >
+                              Floor Insulation
+                            </Label>
+                            <motion.div
+                              initial={false}
+                              animate={formData.services.floor ? { scale: 1 } : { scale: 0 }}
+                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       <div className="space-y-2">

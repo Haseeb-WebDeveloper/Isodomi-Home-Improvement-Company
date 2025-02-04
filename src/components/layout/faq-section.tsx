@@ -10,7 +10,7 @@ const faqs = [
     answer: (
       <>
         <p className="mb-4">
-          Yes, at Isodomi, we handle the entire process from A to Z, which includes:
+          Yes, at Renodomi, we handle the entire process from A to Z, which includes:
         </p>
         <ul className="list-disc pl-5 mb-4 space-y-2">
           <li>Carrying out necessary demolition work</li>

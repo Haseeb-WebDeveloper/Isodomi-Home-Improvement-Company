@@ -45,7 +45,7 @@ export default function WhyChooseSection() {
   return (
       <FeatureSteps 
         features={features}
-        title="Why Choose Isodomi?"
+        title="Why Choose Renodomi?"
         autoPlayInterval={4000}
         imageHeight="h-[450px]"
       />
