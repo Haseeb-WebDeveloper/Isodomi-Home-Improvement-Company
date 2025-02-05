@@ -1,12 +1,30 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+interface FormData {
+  services: {
+    spouwmuurisolatie: boolean;
+    bodemisolatie: boolean;
+    vloerisolatie: boolean;
+    dakisolatie: boolean;
+  };
+  street: string;
+  number: string;
+  postalCode: string;
+  houseType: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  additionalInfo: string;
+}
+
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, address, message, services } = await req.json();
-
-    // Validate required fields
-    if (!name || !email || !phone || !address) {
+    const data: FormData = await req.json();
+    console.log(data);
+    // Validate required  fields
+    if (!data.firstName || !data.lastName || !data.email || !data.phone) {
       return NextResponse.json(
         { error: "Required fields are missing" },
         { status: 400 }
@@ -14,9 +32,17 @@ export async function POST(req: Request) {
     }
 
     // Format selected services for email
-    const selectedServices = Object.entries(services)
+    const selectedServices = Object.entries(data.services)
       .filter(([_, isSelected]) => isSelected)
-      .map(([service]) => service.charAt(0).toUpperCase() + service.slice(1) + " Insulation")
+      .map(([service]) => {
+        const serviceNames: { [key: string]: string } = {
+          spouwmuurisolatie: "Spouwmuurisolatie",
+          bodemisolatie: "Bodemisolatie",
+          vloerisolatie: "Vloerisolatie",
+          dakisolatie: "Dakisolatie"
+        };
+        return serviceNames[service];
+      })
       .join(", ");
 
     // Create email transporter
@@ -30,85 +56,77 @@ export async function POST(req: Request) {
       },
     });
 
-    // Email template
-    const htmlContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px;">New Contact Form Submission</h2>
-        
-        <div style="margin: 20px 0;">
-          <h3 style="color: #666;">Contact Details:</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Address:</strong> ${address}</p>
-          <p><strong>Services Required:</strong> ${selectedServices || "None selected"}</p>
-        </div>
-
-        ${message ? `
-          <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
-            <h3 style="color: #666; margin-top: 0;">Message:</h3>
-            <p style="margin-bottom: 0;">${message}</p>
-          </div>
-        ` : ''}
-
-        <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #eee; color: #666; font-size: 12px;">
-          <p>This is an automated email from your website contact form.</p>
-        </div>
-      </div>
-    `;
-
-    // Setup email data
+    // Email to company
     const mailOptions = {
-      from: {
-        name: "Renodomi Website",
-        address: process.env.SENDER_EMAIL!
-      },
-      to: process.env.SENDER_EMAIL,
-      subject: `New Contact Request from ${name}`,
-      html: htmlContent,
-      replyTo: email // Allows direct reply to the sender
+      from: process.env.SENDER_EMAIL,
+      to: "info@renodomi.nl",
+      subject: "Nieuwe offerte aanvraag",
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333;">Nieuwe offerte aanvraag</h2>
+          
+          <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+            <h3 style="color: #666; margin-top: 0;">Geselecteerde diensten:</h3>
+            <p style="margin-bottom: 0;">${selectedServices}</p>
+          </div>
+
+          <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+            <h3 style="color: #666; margin-top: 0;">Adresgegevens:</h3>
+            <p>Straat: ${data.street}</p>
+            <p>Nummer: ${data.number}</p>
+            <p>Postcode: ${data.postalCode}</p>
+            <p>Type woning: ${data.houseType}</p>
+          </div>
+
+          <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+            <h3 style="color: #666; margin-top: 0;">Contactgegevens:</h3>
+            <p>Naam: ${data.firstName} ${data.lastName}</p>
+            <p>Email: ${data.email}</p>
+            <p>Telefoon: ${data.phone}</p>
+          </div>
+
+          ${data.additionalInfo ? `
+            <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+              <h3 style="color: #666; margin-top: 0;">Aanvullende informatie:</h3>
+              <p style="margin-bottom: 0;">${data.additionalInfo}</p>
+            </div>
+          ` : ''}
+        </div>
+      `
     };
 
     // Send email
     await transporter.sendMail(mailOptions);
 
-    // Send auto-reply to the customer
+    // Send auto-reply to customer
     const autoReplyOptions = {
-      from: {
-        name: "Renodomi",
-        address: process.env.SENDER_EMAIL!
-      },
-      to: email,
-      subject: "Thank you for contacting Renodomi",
+      from: process.env.SENDER_EMAIL,
+      to: data.email,
+      subject: "Bedankt voor uw aanvraag - Renodomi",
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Thank You for Contacting Renodomi</h2>
+        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333;">Bedankt voor uw aanvraag</h2>
           
-          <p>Dear ${name},</p>
+          <p>Beste ${data.firstName},</p>
           
-          <p>Thank you for reaching out to us. We have received your message and will get back to you within 24-48 business hours.</p>
+          <p>Bedankt voor uw interesse in onze isolatiediensten. We hebben uw aanvraag ontvangen en zullen deze zo spoedig mogelijk behandelen.</p>
           
           <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px;">
-            <h3 style="color: #666; margin-top: 0;">Your submitted details:</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Phone:</strong> ${phone}</p>
-            <p><strong>Address:</strong> ${address}</p>
-            ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+            <h3 style="color: #666; margin-top: 0;">Uw aanvraag betreft:</h3>
+            <p>${selectedServices}</p>
           </div>
           
-          <p>If you need immediate assistance, please call us at +31 (0) 123 456 789.</p>
+          <p>We nemen binnen 24-48 uur contact met u op om uw aanvraag te bespreken.</p>
           
-          <p style="margin-top: 20px;">Best regards,<br>The Renodomi Team</p>
-          
-          <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #eee; color: #666; font-size: 12px;">
-            <p>This is an automated response. Please do not reply to this email.</p>
-          </div>
+          <p>Met vriendelijke groet,<br>Team Renodomi</p>
         </div>
       `
     };
 
     // Send auto-reply
     await transporter.sendMail(autoReplyOptions);
+
+    console.log("Email sent successfully", mailOptions, autoReplyOptions);
 
     return NextResponse.json(
       { message: "Email sent successfully" },
