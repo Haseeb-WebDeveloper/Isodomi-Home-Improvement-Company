@@ -10,10 +10,9 @@ import { toast } from "sonner";
 interface FormData {
   // Step 1
   services: {
-    spouwmuurisolatie: boolean;
-    bodemisolatie: boolean;
-    vloerisolatie: boolean;
+    gevelisolatie: boolean;
     dakisolatie: boolean;
+    vloerisolatie: boolean;
   };
   // Step 2
   street: string;
@@ -30,10 +29,9 @@ interface FormData {
 
 const initialFormData: FormData = {
   services: {
-    spouwmuurisolatie: false,
-    bodemisolatie: false,
-    vloerisolatie: false,
+    gevelisolatie: false,
     dakisolatie: false,
+    vloerisolatie: false,
   },
   street: "",
   number: "",
@@ -72,6 +70,7 @@ export function ContactSection() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit = async () => {
     try {
@@ -103,16 +102,95 @@ export function ContactSection() {
     }
   };
 
+  const validateStep = (step: number) => {
+    const newErrors: { [key: string]: string } = {};
+
+    switch (step) {
+      case 0:
+        if (!Object.values(formData.services).some(v => v)) {
+          newErrors.services = "Selecteer minimaal één service";
+        }
+        break;
+      case 1:
+        if (!formData.street) newErrors.street = "Straatnaam is verplicht";
+        if (!formData.number) newErrors.number = "Huisnummer is verplicht";
+        if (!formData.postalCode) newErrors.postalCode = "Postcode is verplicht";
+        if (!formData.houseType) newErrors.houseType = "Selecteer een type woning";
+        break;
+      case 2:
+        if (!formData.firstName) newErrors.firstName = "Voornaam is verplicht";
+        if (!formData.lastName) newErrors.lastName = "Achternaam is verplicht";
+        if (!formData.email) newErrors.email = "E-mailadres is verplicht";
+        if (!formData.phone) newErrors.phone = "Telefoonnummer is verplicht";
+        break;
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const StepIndicators = () => (
+    <div className="relative flex justify-between mb-12">
+      {steps.map((step, index) => (
+        <div key={index} className="flex items-center">
+          {/* Connecting Line */}
+          {index > 0 && (
+            <motion.div 
+              className="absolute h-[2px] bg-primary/20"
+              style={{
+                left: `${((index - 1) * 50) + 5}%`,
+                right: `${((steps.length - index - 1) * 50) + 5}%`,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 0
+              }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: currentStep >= index ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            />
+          )}
+          
+          {/* Step Circle */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            className={`
+              relative z-10 w-10 h-10 rounded-full flex items-center justify-center
+              transition-colors duration-300
+              ${currentStep >= index ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'}
+            `}
+          >
+            {index + 1}
+          </motion.div>
+        </div>
+      ))}
+    </div>
+  );
+
+  const handleNext = () => {
+    if (validateStep(currentStep)) {
+      if (currentStep === steps.length - 1) {
+        handleSubmit();
+      } else {
+        setCurrentStep(prev => prev + 1);
+      }
+    }
+  };
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
         return (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
             className="space-y-4"
           >
+            {errors.services && (
+              <p className="text-red-500 text-sm">{errors.services}</p>
+            )}
             <div className="space-y-3">
               {Object.entries(formData.services).map(([key, value]) => (
                 <label key={key} className="flex items-center space-x-3">
@@ -138,31 +216,32 @@ export function ContactSection() {
       case 1:
         return (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="space-y-6"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
           >
-            <div className="grid grid-cols-6 gap-4">
-              <Input
-                className="col-span-3"
-                placeholder="Straatnaam"
-                value={formData.street}
-                onChange={(e) => setFormData({ ...formData, street: e.target.value })}
-              />
-              <Input
-                className="col-span-1"
-                placeholder="Nr"
-                value={formData.number}
-                onChange={(e) => setFormData({ ...formData, number: e.target.value })}
-              />
-              <Input
-                className="col-span-2"
-                placeholder="1234AB"
-                value={formData.postalCode}
-                onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-              />
-            </div>
+            <Input
+              placeholder="Straatnaam"
+              value={formData.street}
+              onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+              className={errors.street ? "border-red-500" : ""}
+            />
+            {errors.street && (
+              <p className="text-red-500 text-sm">{errors.street}</p>
+            )}
+            <Input
+              className="col-span-1"
+              placeholder="Nr"
+              value={formData.number}
+              onChange={(e) => setFormData({ ...formData, number: e.target.value })}
+            />
+            <Input
+              className="col-span-2"
+              placeholder="1234AB"
+              value={formData.postalCode}
+              onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
+            />
 
             <div className="space-y-3">
               <h3 className="text-lg font-medium">Welk type woning heeft u?</h3>
@@ -188,32 +267,49 @@ export function ContactSection() {
       case 2:
         return (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
             className="space-y-4"
           >
             <Input
               placeholder="Voornaam"
               value={formData.firstName}
               onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              className={errors.firstName ? "border-red-500" : ""}
             />
+            {errors.firstName && (
+              <p className="text-red-500 text-sm">{errors.firstName}</p>
+            )}
             <Input
               placeholder="Achternaam"
               value={formData.lastName}
               onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              className={errors.lastName ? "border-red-500" : ""}
             />
+            {errors.lastName && (
+              <p className="text-red-500 text-sm">{errors.lastName}</p>
+            )}
             <Input
               type="email"
               placeholder="E-mailadres"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className={errors.email ? "border-red-500" : ""}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
             <Input
               placeholder="Telefoonnummer"
+
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className={errors.phone ? "border-red-500" : ""}
             />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone}</p>
+            )}
             <Textarea
               placeholder="Aanvullende informatie (optioneel)"
               value={formData.additionalInfo}
@@ -253,11 +349,10 @@ export function ContactSection() {
               <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
               <ul className="space-y-3">
                 {[
-                  "Gratis consultatie en offerte",
-                  "Expert advies op energie-besparing oplossingen",
-                  "Professioneel installatie door gecertificeerde team",
-                  "Volledige na-service ondersteuning",
-                  "Hulp bij subsidiabele projecten"
+                  "Oplossing met volledig afgewerkt resultaat",
+                  "Startdatum binnen 2 weken na opnamen",
+                  "Werkzaam in heel Midden-Nederland",
+                  "Subsidie-begeleiding",
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -352,22 +447,7 @@ export function ContactSection() {
                 <div className="mt-6 space-y-4">
                   <Button
                     className="w-full"
-                    onClick={() => {
-                      if (currentStep === steps.length - 1) {
-                        handleSubmit();
-                      } else {
-                        // Validate current step before proceeding
-                        if (currentStep === 0 && !Object.values(formData.services).some(v => v)) {
-                          toast.error("Selecteer minimaal één service");
-                          return;
-                        }
-                        if (currentStep === 1 && (!formData.street || !formData.number || !formData.postalCode || !formData.houseType)) {
-                          toast.error("Vul alle adresgegevens in");
-                          return;
-                        }
-                        setCurrentStep(prev => prev + 1);
-                      }
-                    }}
+                    onClick={handleNext}
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -386,7 +466,7 @@ export function ContactSection() {
                     <svg className="w-4 h-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
-                    <span>+ 53.000 huizen geïsoleerd</span>
+                    <span>binnen 2 weken een startdatum</span>
                   </div>
                 </div>
               </form>

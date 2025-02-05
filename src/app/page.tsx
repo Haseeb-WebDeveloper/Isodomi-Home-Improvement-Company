@@ -11,14 +11,9 @@ export default function Home() {
     <main>
       <HeroSection />
       <AboutSection />
-      <ServicesSection />
-      <HowWeWorkSection />
-      {/* <WhyChooseSection /> */}
       <WhyChooseSection />
-      {/* <div style={{position: 'relative', overflow: 'hidden', minHeight: '500px', maxHeight: '500px', width: '100%'}}>
-        <Ballpit
-        />
-      </div> */}
+      <HowWeWorkSection />
+      <ServicesSection />
       <FAQSection />
       <ContactSection />
     </main>

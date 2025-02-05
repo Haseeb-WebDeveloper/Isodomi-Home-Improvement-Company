@@ -3,16 +3,16 @@ import nodemailer from "nodemailer";
 
 interface FormData {
   services: {
-    spouwmuurisolatie: boolean;
-    bodemisolatie: boolean;
-    vloerisolatie: boolean;
+    gevelisolatie: boolean;
     dakisolatie: boolean;
+    vloerisolatie: boolean;
   };
   street: string;
   number: string;
   postalCode: string;
   houseType: string;
   firstName: string;
+
   lastName: string;
   email: string;
   phone: string;
@@ -36,10 +36,9 @@ export async function POST(req: Request) {
       .filter(([_, isSelected]) => isSelected)
       .map(([service]) => {
         const serviceNames: { [key: string]: string } = {
-          spouwmuurisolatie: "Spouwmuurisolatie",
-          bodemisolatie: "Bodemisolatie",
-          vloerisolatie: "Vloerisolatie",
-          dakisolatie: "Dakisolatie"
+          gevelisolatie: "Gevelisolatie",
+          dakisolatie: "Dakisolatie",
+          vloerisolatie: "Vloerisolatie"
         };
         return serviceNames[service];
       })

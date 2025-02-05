@@ -6,83 +6,67 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Biedt u een complete oplossing?",
+    question: "Bieden jullie een complete oplossing aan?",
     answer: (
       <>
         <p className="mb-4">
-        Ja, bij Renodomi verzorgen we het gehele proces van A tot Z, waaronder:
+        Ja, bij isodomi verzorgen we het complete traject van A tot Z. Dit betekent dat we u volledig ontzorgen door bijvoorbeeld:
         </p>
         <ul className="list-disc pl-5 mb-4 space-y-2">
-
-          <li>Uitvoeren van noodzakelijke sloopwerkzaamheden</li>
-          <li>Professioneel toepassen van isolatie</li>
-          <li>Aanpassen van radiatoren, elektrische uitlaatpoorten en dakranden</li>
-          <li>Voltooien van alle afwerkingen, waaronder gipsen, houten platen en schilderen</li>
-          <li>Afwerken van het werkgebied en het opruimen</li>
+          <li>Alle benodigde sloopwerkzaamheden uit te voeren</li>
+          <li>De isolatie op vakkundige wijze aanbrengen</li>
+          <li>Radiatoren, elektriciteitspunten en vensterbanken aanpassen</li>
+          <li>De complete afwerking verzorgen, inclusief stucwerk, plinten en schilderwerk</li>
+          <li>De werkplek schoon en opgeruimd achterlaten</li>
         </ul>
-        <p>Je hoeft geen meerdere contractanten te nemen; we nemen alle zorgen voor je op.</p>
+        <p>U hoeft dus niet meerdere partijen in te schakelen; wij regelen alles voor u in één keer.</p>
       </>
-
     ),
   },
   {
-    question: "Hoe lang duurt een isolatieproject?",
+    question: "Hoe lang duurt een isolatieproject gemiddeld?",
     answer: (
       <>
-
         <p className="mb-4">
-          De duur van een isolatieproject hangt af van het type isolatie en de grootte van uw huis. Gemiddeld:
+          De duur van een isolatieproject hangt af van het type isolatie en de grootte van uw woning. Gemiddeld duurt:
         </p>
         <ul className="list-disc pl-5 mb-4 space-y-2">
           <li>Dakisolatie: 1-2 weken</li>
           <li>Gevelisolatie: 1-2 weken</li>
           <li>Vloerisolatie: 1-2 weken</li>
-
         </ul>
-        <p>We streven ernaar elk project zo efficiënt mogelijk af te werken zonder de kwaliteit in gevaar te brengen.</p>
+        <p>We streven ernaar om elk project zo efficiënt mogelijk uit te voeren zonder in te leveren op kwaliteit.</p>
       </>
-
     ),
   },
   {
     question: "Welke isolatiematerialen gebruiken jullie?",
-    answer: "We gebruiken alleen hoogwaardige, gecertificeerde isolatiematerialen die voldoen aan alle Nederlandse bouwstandaarden. De exacte keuze van materialen hangt af van uw specifieke situatie en voorkeuren.",
+    answer: "We werken uitsluitend met hoogwaardige, gecertificeerde isolatiematerialen die voldoen aan alle Nederlandse bouwnormen. De exacte materiaalkeuze hangt af van uw specifieke situatie en wensen.",
   },
-
   {
-    question: "Kan ik een subsidie krijgen voor isolatie?",
-    answer: "Ja, er zijn subsidies beschikbaar voor veel isolatiemeasures. Als gecertificeerde isolatiebedrijf helpen we u bij het toepassen voor deze subsidies, leiden u door het proces en zorgen ervoor dat u de beschikbare voordelen maximaliseert.",
+    question: "Kan ik subsidie krijgen voor isolatie?",
+    answer: "Ja, voor veel isolatiemaatregelen zijn er subsidies beschikbaar via de overheid. Als professioneel isolatiebedrijf helpen we u graag bij het aanvragen van deze subsidies. We begeleiden u door het hele proces en zorgen ervoor dat u optimaal gebruik kunt maken van de beschikbare regelingen.",
   },
-
   {
-    question: "Wat is de terugverdientijd voor isolatie?",
+    question: "Wat is de terugverdientijd van isolatie?",
     answer: (
       <>
-
         <p className="mb-4">
-          De terugverdientijd verschilt per isolatietype en huisconditie, maar typisch ligt deze tussen 3 en 7 jaar. Factoren die hierop van invloed zijn:
+          De terugverdientijd verschilt per type isolatie en situatie, maar ligt meestal tussen de 3 en 7 jaar. Factoren die hierop van invloed zijn:
         </p>
         <ul className="list-disc pl-5 space-y-2">
-
-          <li>Type van isolatie</li>
-          <li>Huidige staat van uw huis</li>
+          <li>Het type isolatie</li>
+          <li>De huidige staat van uw woning</li>
           <li>Uw energieverbruik</li>
           <li>Energieprijzen</li>
-
         </ul>
       </>
     ),
   },
   {
-    question: "Kan isolatiewerk worden gedaan in de winter?",
-    answer: "Ja, we kunnen isolatiewerk doen in alle seizoenen. Onze materialen en technieken zijn geschikt voor alle weersomstandigheden.",
+    question: "Moet ik thuis zijn tijdens de werkzaamheden?",
+    answer: "Het is niet noodzakelijk om de hele dag thuis te zijn tijdens de werkzaamheden. Wel vragen we u aanwezig te zijn bij de start van het project voor eventuele laatste afstemming en aan het einde voor de oplevering. Tijdens het bouwproces ontvangt u regelmatig updates van de voortgang. Wij zijn voorstander van een transparante communicatie.",
   },
-
-  {
-    question: "Moet ik thuis zijn tijdens het werk?",
-    answer: "Je hoeft niet elke dag thuis te zijn tijdens het werk. We vragen je echter om je beschikbaar te hebben aan het begin van de werkdag voor final coordinatie en aan het einde voor een final inspectie en overdracht.",
-  },
-
 ];
 
 function FAQItem({ question, answer, isOpen, onToggle, index }: { question: string; answer: React.ReactNode; isOpen: boolean; onToggle: () => void; index: number; }) {
