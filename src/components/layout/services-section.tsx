@@ -7,15 +7,19 @@ import Link from "next/link";
 
 const services = [
   {
-    title: "Roof Insulation",
-    description: "Maximize efficiency with professional roof insulation.",
+    title: "Dakisolatie",
+    description: "Maximaliseer de efficiëntie met professionele dakisolatie.",
     image: "/roof-insulation.jpg",
     features: [
-      "Temperature regulation",
-      "Energy cost reduction",
-      "Noise reduction",
-      "Increased property value"
+      "Optimaal haalbaar ",
+      "rendement dankzij ",
+      "professionele dakisolatie,",
+      "uitgevoerd met ",
+      "hoogwaardige materialen en",
+      "vakkundige installatie",
+      // "inclusief complete ",
     ],
+
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 20h20" />
@@ -25,15 +29,18 @@ const services = [
     )
   },
   {
-    title: "Facade Insulation",
-    description: "Effective insulation solutions for your walls.",
+    title: "Gevelisolatie",
+    description: "Effectieve isolatieoplossingen voor uw muren.",
     image: "/Facade-insulation.jpg",
     features: [
-      "Weather protection",
-      "Moisture control",
-      "Heat retention",
-      "Modern aesthetics"
+      "Professionele",
+      "binnengevelisolatie met",
+      "hoogwaardige",
+      "isolatiematerialen voor",
+      "optimale warmtewering en",
+      "energiebesparing",
     ],
+
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect width="18" height="18" x="3" y="3" rx="2" />
@@ -43,14 +50,16 @@ const services = [
     )
   },
   {
-    title: "Floor Insulation",
-    description: "Enhance comfort with floor and crawl space insulation.",
+    title: "Vloerisolatie",
+    description: "Verbeter het comfort met vloer- en kruipruimte-isolatie.",
     image: "/Floor-Insulation.avif",
     features: [
-      "Thermal comfort",
-      "Moisture barrier",
-      "Energy efficiency",
-      "Draft elimination"
+      "Professionele isolatie van",
+      "vloeren en kruipruimtes",
+      "hoogwaardige",
+      "isolatiematerialen en",
+      "creëren we een",
+      "vakkundige installatie",
     ],
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -79,7 +88,7 @@ export function ServicesSection() {
           className="text-center max-w-2xl mx-auto mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our Services
+             Onze diensten
           </h2>
           <p className="text-muted-foreground">
             Professional insulation solutions tailored to your needs. We provide comprehensive services to improve your home's energy efficiency.

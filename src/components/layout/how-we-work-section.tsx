@@ -10,26 +10,26 @@ const steps = [
         <path d="M12 8v4" /><path d="M12 16h.01" />
       </svg>
     ),
-    title: "Transparent Communication",
-    description: "We keep you informed throughout the entire process with daily updates and a personal client dashboard.",
+    title: "Kwaliteitsgarantie",
+    description: "We werken met professionele teams en hoogwaardige materialen om het beste resultaat te leveren aan onze klanten.",
   },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4 12 14.01l-3-3" />
-      </svg>
-    ),
-    title: "Efficient Execution",
-    description: "Thanks to our standardized approach and experienced teams, we complete projects quickly and professionally.",
-  },
+  // {
+  //   icon: (
+  //     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4 12 14.01l-3-3" />
+  //     </svg>
+  //   ),
+  //   title: "Efficient Execution",
+  //   description: "Thanks to our standardized approach and experienced teams, we complete projects quickly and professionally.",
+  // },
   {
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
       </svg>
     ),
-    title: "Reliable Scheduling",
-    description: "We start within two weeks of approval and adhere to the agreed timelines.",
+    title: "Gestandaardiseerde aanpak:",
+    description: " Door onze efficiënte werkwijze en bewezen optimalisatie-pakketten kunnen we projecten, zowel effectief als kwalitatief goed uitvoeren.",
   },
   {
     icon: (
@@ -37,8 +37,8 @@ const steps = [
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
       </svg>
     ),
-    title: "Professional Approach",
-    description: "Every project begins with a thorough inspection, followed by a detailed plan of action.",
+    title: "Professionele aanpak",
+    description: "Elk project start met een grondige opname, gevolgd door een gedetailleerd plan van aanpak en duidelijke offerte.",
   },
   {
     icon: (
@@ -46,8 +46,8 @@ const steps = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     ),
-    title: "Quality Guarantee",
-    description: "We use only certified materials and highly skilled insulation specialists.",
+    title: "Volledige ontzorging",
+    description: "Wij werken met regelmatige updates en duidelijke communicatie gedurende het hele project, zodat u altijd op de hoogte bent van de voortgang.",
   },
   // {
   //   icon: (
@@ -77,14 +77,14 @@ export function HowWeWorkSection() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className="text-4xl font-bold mb-6">How We Work</h2>
+          <h2 className="text-4xl font-bold mb-6">Onze Werkwijze</h2>
           <p className="text-muted-foreground text-lg">
-            At Renodomi, transparency, efficiency, and reliability are at the core of our operations:
+          Bij isodomi staat kwaliteit en efficiëntie voorop. Als specialist in isolatie zorgen wij voor verduurzaming en woningverbetering. Dit realiseren wij met behulp van een all-in-one oplossing waarbij we de klant bij het hele proces van A tot Z ontzorgen:
           </p>
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}

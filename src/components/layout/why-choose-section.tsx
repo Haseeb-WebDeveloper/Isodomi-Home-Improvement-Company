@@ -4,38 +4,38 @@ const features = [
   { 
 
     step: 'Step 1', 
-    title: ' Fully finished solutions',
-    content: 'We provide fully finished solutions for your home', 
+    title: ' Temperatuurregulatie',
+    content: 'Wij helpen u de temperatuur in uw woning te reguleren', 
     icon: '🏠',
     image: '/completed.jpg' 
+
+
 
 
   },
   { 
     step: 'Step 2',
-    title: 'Start within two weeks',
-    content: 'We start within two weeks',
+    title: 'Verlaging energiekosten',
+    content: 'Wij helpen u geld te besparen op uw energierekening',
     icon: '⏰',
     image: '/quick.jpg'
-
-
   },
   { 
     step: 'Step 3',
-    title: ' Active across central Netherlands',
-    content: 'We are active across central Netherlands',
+    title: 'Verbeterd wooncomfort',
+    content: 'Wij helpen u het comfort van uw woning te verbeteren',
     icon: '🚗',
     image: '/active.jpg'
 
-
-
   },
   { 
     step: 'Step 3',
-    title: 'Assistance with subsidy applications',
-    content: 'We assist with subsidy applications',
+    title: 'Waardestijging van uw woning',
+    content: 'Wij helpen u de waarde van uw woning te verhogen',
     icon: '💰',
     image: '/subsidies.jpg'
+
+
 
 
   }
@@ -45,7 +45,7 @@ export default function WhyChooseSection() {
   return (
       <FeatureSteps 
         features={features}
-        title="Why Choose Renodomi?"
+        title="Waarom kiezen voor isoleren: ?"
         autoPlayInterval={4000}
         imageHeight="h-[450px]"
       />

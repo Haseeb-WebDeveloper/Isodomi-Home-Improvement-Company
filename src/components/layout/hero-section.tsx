@@ -42,7 +42,7 @@ export function HeroSection() {
 
         >
           <span className="inline-block py-1.5 px-4 rounded-full border border-primary/20 text-primary font-medium text-sm">
-            Premium Construction Solutions
+            Premium bouwoplossingen
           </span>
         </motion.div>
 
@@ -54,8 +54,7 @@ export function HeroSection() {
         >
           Specialist in{" "}
           <span className="text-primary">
-
-            Roof, Facade, and Floor Insulation
+          dak-, gevel- en vloerisolatie
           </span>
         </motion.h1>
 
@@ -65,9 +64,9 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto"
         >
-          Experience excellence in construction with our innovative solutions. 
-          We bring together cutting-edge technology and expert craftsmanship to 
-          deliver outstanding results.
+          Ervaar uitmuntendheid in de bouw met onze innovatieve oplossingen. 
+          Wij brengen geavanceerde technologie en deskundig vakmanschap samen 
+          uitmuntende resultaten opleveren.
         </motion.p>
 
         <motion.div
@@ -78,9 +77,8 @@ export function HeroSection() {
         >
         <Link href="#contact">
           <Button size="lg" className="text-base min-w-[250px] h-12">
-            Get Started
+            Aan de slag
             <motion.svg
-
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

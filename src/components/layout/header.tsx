@@ -34,10 +34,11 @@ export function Header() {
 
   const navItems = [
     // { name: "Home", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
+    { name: "Over ons", href: "#about" },
+    { name: "Diensten", href: "#services" },
     { name: "Contact", href: "#contact" },
   ];
+
 
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -130,8 +131,9 @@ export function Header() {
               className="hidden md:inline-flex px-8 py-4"
               onClick={(e) => handleNavClick(e as any, "#contact")}
             >
-              <Link href="#contact">Get Quote</Link>
+              <Link href="#contact">Contacteer ons</Link>
             </Button>
+
 
             {/* Mobile Menu Button */}
             <button className="md:hidden p-2 hover:bg-accent rounded-md">

@@ -35,14 +35,15 @@ export function AboutSection() {
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <div className="text-3xl font-bold text-primary">€180/m²</div>
-                  <div className="text-sm text-muted-foreground">Starting Price</div>
+                  <div className="text-sm text-muted-foreground">Prijs per m²</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-primary">15+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                  <div className="text-sm text-muted-foreground">Jaren ervaring</div>
                 </div>
               </div>
             </div>
+
           </motion.div>
 
           {/* Right Column - Content */}
@@ -53,33 +54,24 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className=""
           >
-            <h2 className="text-4xl font-bold mb-8">About Us</h2>
+            <h2 className="text-4xl font-bold mb-8">Over ons</h2>
             
+
             <div className="space-y-6 text-muted-foreground">
               <p>
-                Renodomi is a specialized insulation company focused on making homes and 
-                commercial buildings more energy-efficient across central Netherlands. 
-                As experts in roof, facade, and floor insulation, we have extensive 
-                experience in the insulation industry.
+              Isodomi is een gespecialiseerd isolatiebedrijf dat zich richt op het verduurzamen van woningen en bedrijfspanden in heel midden-Nederland. Als expert in dak-, gevel- en vloerisolatie hebben we ruime ervaring in de isolatiebranche.
               </p>
               
               <p>
-                Our mission is to help homeowners reduce their energy bills and improve 
-                their living comfort. We achieve this by providing high-quality insulation 
-                solutions, executed by our skilled team.
+              Onze missie is om huiseigenaren te helpen hun energierekening te verlagen en hun wooncomfort te verhogen. Dit doen we door het leveren van hoogwaardige isolatieoplossingen, uitgevoerd door ons vakkundige team.
               </p>
               
               <p>
-                At Renodomi, we understand that every home is unique. That&apos;s why we offer 
-                personalized advice and tailor-made solutions that perfectly match your 
-                situation and needs. From the first inspection to the final finishing, 
-                you can count on our professional approach and quality guarantee.
+              Bij Isodomi begrijpen we dat elke woning uniek is. Daarom bieden we persoonlijk advies en maatwerk oplossingen die perfect aansluiten bij uw situatie en wensen. Van de eerste inspectie tot de laatste afwerking, kunt u rekenen op onze professionele aanpak, waarbij kwaliteit bij ons hoog in het vaandel staat.
               </p>
               
               <p>
-                As a certified insulation company, we also assist you in applying for 
-                available subsidies, making sustainability not only comfortable but 
-                also affordable.
+              Als professioneel isolatiebedrijf helpen we u ook graag bij het aanvragen van eventueel beschikbare subsidies. Zo maken we verduurzaming niet alleen comfortabel, maar ook betaalbaar.
               </p>
             </div>
 
@@ -92,13 +84,13 @@ export function AboutSection() {
               className="mt-8 p-6 bg-primary/5 rounded-xl border border-primary/10"
             >
               <div className="text-xl font-semibold mb-2">
-                Professional roof insulation for just €180/m²
+                Totale dakisolatie vanaf slechts  €180/m²
               </div>
               <p className="text-muted-foreground mb-4">
-                Start saving on your energy bill immediately!
+               Bespaar direct op uw energierekening!
               </p>
               <Button size="lg" className="w-full sm:w-auto">
-                Get Your Free Quote
+                 Ontvang uw gratis offerte
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

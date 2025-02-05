@@ -36,8 +36,30 @@ const initialFormData: FormData = {
   }
 };
 
+const steps = [
+  {
+    id: 'personal',
+    title: 'Persoonlijke informatie',
+    subtitle: 'Laat ons weten wie je bent'
+  },
+
+  {
+    id: 'services',
+    title: 'Selecteer diensten',
+    subtitle: 'Kies wat je nodig hebt'
+  },
+
+  {
+    id: 'details',
+    title: 'Extra details',
+    subtitle: 'Help ons je nodigheden beter te begrijpen'
+  }
+
+];
+
 export function ContactSection() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -60,13 +82,146 @@ export function ContactSection() {
       setShowSuccess(true);
       toast.success("Message sent successfully! We'll get back to you soon.");
       setFormData(initialFormData);
+      setCurrentStep(0);
     } catch (error) {
       console.error('Error sending message:', error);
       toast.error("Failed to send message. Please try again later.");
     } finally {
       setIsLoading(false);
     }
+  };
 
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 0:
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <Input
+              placeholder="Je volledige naam"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="h-12"
+
+            />
+
+            <Input
+              type="email"
+              placeholder="Je e-mailadres"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              required
+              className="h-12"
+
+            />
+
+            <PhoneInput
+              country={'nl'}
+              value={formData.phone}
+              onChange={(phone) => setFormData({ ...formData, phone })}
+              inputClass="!w-full !h-12 !bg-background !text-foreground !border-input"
+              buttonClass="!bg-background !border-input"
+              dropdownClass="!bg-background !text-foreground"
+              placeholder="Je telefoonnummer"
+            />
+          </motion.div>
+
+        );
+
+      case 1:
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {Object.entries(formData.services).map(([service, isSelected]) => (
+                <motion.div
+                  key={service}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`
+                    relative p-6 rounded-xl cursor-pointer
+                    ${isSelected ? 'bg-primary text-primary-foreground' : 'bg-primary/5'}
+                    transition-colors duration-200
+                  `}
+                  onClick={() => setFormData({
+                    ...formData,
+                    services: {
+                      ...formData.services,
+                      [service]: !isSelected
+                    }
+                  })}
+                >
+                  <h3 className="text-lg font-medium capitalize mb-2">
+                    {service} Insulation
+                  </h3>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute top-2 right-2"
+                    >
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case 2:
+        return (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-4"
+          >
+            <Input
+              placeholder="Je volledige adres"
+              value={formData.address}
+              onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              required
+              className="h-12"
+
+            />
+
+            <Textarea
+              placeholder="Extra details of vragen"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="min-h-[120px] resize-none"
+
+            />
+          </motion.div>
+        );
+
+      default:
+        return null;
+    }
   };
 
   return (
@@ -88,22 +243,25 @@ export function ContactSection() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-4xl font-bold mb-6">Let&apos;s Start Your Project</h2>
+                <h2 className="text-4xl font-bold mb-6">Laat ons je project starten</h2>
                 <p className="text-muted-foreground">
-                  Ready to improve your home&apos;s energy efficiency? We&apos;re here to help you every step of the way.
+                  Klaar om je huis&apos; energie-efficiëntie te verbeteren? We staan klaar om je te helpen bij elke stap van het proces.
                 </p>
               </div>
 
+
               {/* Why Contact Us */}
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Why Choose Our Services?</h3>
+                <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
                 <ul className="space-y-3">
+
                   {[
-                    "Free consultation and quote",
-                    "Expert advice on energy-saving solutions",
-                    "Professional installation by certified team",
-                    "Comprehensive after-service support",
-                    "Assistance with subsidy applications"
+                    "Gratis consultatie en offerte",
+                    "Expert advies op energie-besparing oplossingen",
+                    "Professioneel installatie door gecertificeerde team",
+                    "Volledige na-service ondersteuning",
+                    "Hulp bij subsidiabele projecten"
+
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -141,10 +299,11 @@ export function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Phone</h3>
-                    <p className="text-muted-foreground">+31 (0) 123 456 789</p>
+                    <h3 className="font-semibold mb-1">Telefoon</h3>
+                    <p className="text-muted-foreground">+31 (0) 6 123 456 789</p>
                   </div>
                 </div>
+
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
@@ -179,7 +338,7 @@ export function ContactSection() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="bg-background/50 backdrop-blur-sm rounded-2xl p-8 border border-border">
+              <div className="relative z-10 bg-background/50 backdrop-blur-sm rounded-2xl border border-primary/10 p-6 md:p-8">
                 <AnimatePresence mode="wait">
                   {showSuccess ? (
                     <motion.div
@@ -188,218 +347,133 @@ export function ContactSection() {
                       exit={{ opacity: 0, y: -20 }}
                       className="text-center py-8"
                     >
-                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg
-                          className="w-8 h-8 text-primary"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
+                      <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary">
+                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                      <h3 className="text-2xl font-bold mb-4">Bedankt!</h3>
                       <p className="text-muted-foreground mb-6">
-                        Thank you for contacting us. We&apos;ll get back to you within 24-48 hours.
+                        We hebben je bericht ontvangen en zullen zo snel mogelijk terugkomen.
                       </p>
+
                       <Button
-                        onClick={() => setShowSuccess(false)}
+                        onClick={() => {
+                          setShowSuccess(false);
+                          setCurrentStep(0);
+                        }}
                         variant="outline"
                       >
-                        Send Another Message
+                        Stuur een ander bericht
                       </Button>
                     </motion.div>
+
                   ) : (
-                    <motion.form
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit}
-                      className="space-y-4"
-                    >
-                      <div className="space-y-1">
-                        <Label htmlFor="name">Full Name</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Doe"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <PhoneInput
-                          country={'nl'}
-                          value={formData.phone}
-                          onChange={(phone) => setFormData({ ...formData, phone })}
-                          inputClass="!w-full !h-10 !bg-background !text-foreground !border-input"
-                          buttonClass="!bg-background !border-input"
-                          dropdownClass="!bg-background !text-foreground"
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="address">Address</Label>
-                        <Input
-                          id="address"
-                          placeholder="Street, City, Postal Code"
-                          value={formData.address}
-                          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                          required
-                        />
-                      </div>
-
-                      {/* Services Checklist */}
-                      <div className="space-y-2">
-                        <Label>Services Required</Label>
-                        <div className="grid sm:grid-cols-3 gap-4">
-                          <div className="relative flex items-center">
-                            <input
-                              type="checkbox"
-                              id="roof"
-                              checked={formData.services.roof}
-                              onChange={(e) => setFormData({
-                                ...formData,
-                                services: {
-                                  ...formData.services,
-                                  roof: e.target.checked
-                                }
-                              })}
-                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
-                            />
-                            <Label 
-                              htmlFor="roof"
-                              className="ml-2 text-sm font-normal cursor-pointer"
+                    <div>
+                      {/* Progress Steps */}
+                      <div className="mb-8">
+                        <div className="flex justify-between mb-4">
+                          {steps.map((step, index) => (
+                            <div
+                              key={step.id}
+                              className={`flex-1 ${index !== steps.length - 1 ? 'relative' : ''}`}
                             >
-                              Roof Insulation
-                            </Label>
-                            <motion.div
-                              initial={false}
-                              animate={formData.services.roof ? { scale: 1 } : { scale: 0 }}
-                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
-                            />
-                          </div>
-
-                          <div className="relative flex items-center">
-                            <input
-                              type="checkbox"
-                              id="facade"
-                              checked={formData.services.facade}
-                              onChange={(e) => setFormData({
-                                ...formData,
-                                services: {
-                                  ...formData.services,
-                                  facade: e.target.checked
-                                }
-                              })}
-                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
-                            />
-                            <Label 
-                              htmlFor="facade"
-                              className="ml-2 text-sm font-normal cursor-pointer"
-                            >
-                              Facade Insulation
-                            </Label>
-                            <motion.div
-                              initial={false}
-                              animate={formData.services.facade ? { scale: 1 } : { scale: 0 }}
-                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
-                            />
-                          </div>
-
-                          <div className="relative flex items-center">
-                            <input
-                              type="checkbox"
-                              id="floor"
-                              checked={formData.services.floor}
-                              onChange={(e) => setFormData({
-                                ...formData,
-                                services: {
-                                  ...formData.services,
-                                  floor: e.target.checked
-                                }
-                              })}
-                              className="peer h-4 w-4 rounded border-primary text-primary focus:ring-primary"
-                            />
-                            <Label 
-                              htmlFor="floor"
-                              className="ml-2 text-sm font-normal cursor-pointer"
-                            >
-                              Floor Insulation
-                            </Label>
-                            <motion.div
-                              initial={false}
-                              animate={formData.services.floor ? { scale: 1 } : { scale: 0 }}
-                              className="absolute -right-1 -top-1 w-3 h-3 bg-primary rounded-full"
-                            />
-                          </div>
+                              <div className="flex flex-col items-center">
+                                <div
+                                  className={`
+                                    w-8 h-8 rounded-full flex items-center justify-center
+                                    transition-colors duration-200
+                                    ${index === currentStep ? 'bg-primary text-primary-foreground' : 
+                                      index < currentStep ? 'bg-primary/80 text-primary-foreground' : 
+                                      'bg-primary/20 text-primary'}
+                                  `}
+                                >
+                                  {index < currentStep ? (
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  ) : (
+                                    index + 1
+                                  )}
+                                </div>
+                                <span className="text-xs mt-2 text-muted-foreground">
+                                  {step.title}
+                                </span>
+                              </div>
+                              {index !== steps.length - 1 && (
+                                <div 
+                                  className={`
+                                    absolute top-4 left-1/2 w-full h-[2px]
+                                    ${index < currentStep ? 'bg-primary' : 'bg-primary/20'}
+                                  `}
+                                />
+                              )}
+                            </div>
+                          ))}
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <Label htmlFor="message">Message (Optional)</Label>
-                        <Textarea
-                          id="message"
-                          placeholder="Your message here..."
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          className="min-h-[100px]"
-                        />
-                      </div>
+                      {/* Step Content */}
+                      <AnimatePresence mode="wait">
+                        <div className="min-h-[300px]">
+                          {renderStepContent()}
+                        </div>
+                      </AnimatePresence>
 
-                      <Button 
-                        type="submit" 
-                        className="w-full"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? (
-                          <span className="flex items-center gap-2">
-                            <svg
-                              className="animate-spin h-4 w-4"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              />
-                            </svg>
-                            Sending...
-                          </span>
+                      {/* Navigation Buttons */}
+                      <div className="flex justify-between mt-8">
+                        <Button
+                          variant="outline"
+                          onClick={prevStep}
+                          disabled={currentStep === 0}
+                        >
+                          Vorige
+                        </Button>
+                        
+
+                        {currentStep === steps.length - 1 ? (
+                          <Button
+                            onClick={handleSubmit}
+                            disabled={isLoading}
+                          >
+                            {isLoading ? (
+                              <span className="flex items-center">
+                                <svg
+                                  className="animate-spin -ml-1 mr-3 h-5 w-5"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                  />
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                  />
+                                </svg>
+                                Verzenden...
+                              </span>
+
+                            ) : (
+                              "Versturen"
+                            )}
+                          </Button>
+
                         ) : (
-                          "Send Message"
+                          <Button onClick={nextStep}>
+                            Volgende
+                          </Button>
                         )}
-                      </Button>
-                    </motion.form>
+
+                      </div>
+                    </div>
                   )}
                 </AnimatePresence>
               </div>

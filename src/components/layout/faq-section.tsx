@@ -6,71 +6,83 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "Do you offer a complete solution?",
+    question: "Biedt u een complete oplossing?",
     answer: (
       <>
         <p className="mb-4">
-          Yes, at Renodomi, we handle the entire process from A to Z, which includes:
+        Ja, bij Renodomi verzorgen we het gehele proces van A tot Z, waaronder:
         </p>
         <ul className="list-disc pl-5 mb-4 space-y-2">
-          <li>Carrying out necessary demolition work</li>
-          <li>Professionally applying insulation</li>
-          <li>Adjusting radiators, electrical outlets, and windowsills</li>
-          <li>Completing all finishing touches, including plastering, skirting, and painting</li>
-          <li>Leaving the work area clean and tidy</li>
+
+          <li>Uitvoeren van noodzakelijke sloopwerkzaamheden</li>
+          <li>Professioneel toepassen van isolatie</li>
+          <li>Aanpassen van radiatoren, elektrische uitlaatpoorten en dakranden</li>
+          <li>Voltooien van alle afwerkingen, waaronder gipsen, houten platen en schilderen</li>
+          <li>Afwerken van het werkgebied en het opruimen</li>
         </ul>
-        <p>You don&apos;t need to hire multiple contractors; we take care of everything in one go.</p>
+        <p>Je hoeft geen meerdere contractanten te nemen; we nemen alle zorgen voor je op.</p>
       </>
+
     ),
   },
   {
-    question: "How long does an insulation project take?",
+    question: "Hoe lang duurt een isolatieproject?",
     answer: (
       <>
+
         <p className="mb-4">
-          The duration of an insulation project depends on the type of insulation and the size of your home. On average:
+          De duur van een isolatieproject hangt af van het type isolatie en de grootte van uw huis. Gemiddeld:
         </p>
         <ul className="list-disc pl-5 mb-4 space-y-2">
-          <li>Roof insulation: 1-2 weeks</li>
-          <li>Facade insulation: 1-2 weeks</li>
-          <li>Floor insulation: 1-2 weeks</li>
+          <li>Dakisolatie: 1-2 weken</li>
+          <li>Gevelisolatie: 1-2 weken</li>
+          <li>Vloerisolatie: 1-2 weken</li>
+
         </ul>
-        <p>We aim to complete every project as efficiently as possible without compromising quality.</p>
+        <p>We streven ernaar elk project zo efficiënt mogelijk af te werken zonder de kwaliteit in gevaar te brengen.</p>
       </>
+
     ),
   },
   {
-    question: "What insulation materials do you use?",
-    answer: "We use only high-quality, certified insulation materials that meet all Dutch building standards. The exact choice of materials depends on your specific situation and preferences.",
+    question: "Welke isolatiematerialen gebruiken jullie?",
+    answer: "We gebruiken alleen hoogwaardige, gecertificeerde isolatiematerialen die voldoen aan alle Nederlandse bouwstandaarden. De exacte keuze van materialen hangt af van uw specifieke situatie en voorkeuren.",
   },
+
   {
-    question: "Can I get a subsidy for insulation?",
-    answer: "Yes, government subsidies are available for many insulation measures. As a certified insulation company, we assist you in applying for these subsidies, guiding you through the process to ensure you maximize available benefits.",
+    question: "Kan ik een subsidie krijgen voor isolatie?",
+    answer: "Ja, er zijn subsidies beschikbaar voor veel isolatiemeasures. Als gecertificeerde isolatiebedrijf helpen we u bij het toepassen voor deze subsidies, leiden u door het proces en zorgen ervoor dat u de beschikbare voordelen maximaliseert.",
   },
+
   {
-    question: "What is the payback period for insulation?",
+    question: "Wat is de terugverdientijd voor isolatie?",
     answer: (
       <>
+
         <p className="mb-4">
-          The payback period varies by insulation type and home condition but typically ranges between 3 and 7 years. Factors influencing this include:
+          De terugverdientijd verschilt per isolatietype en huisconditie, maar typisch ligt deze tussen 3 en 7 jaar. Factoren die hierop van invloed zijn:
         </p>
         <ul className="list-disc pl-5 space-y-2">
-          <li>Type of insulation</li>
-          <li>Current state of your home</li>
-          <li>Your energy consumption</li>
-          <li>Energy prices</li>
+
+          <li>Type van isolatie</li>
+          <li>Huidige staat van uw huis</li>
+          <li>Uw energieverbruik</li>
+          <li>Energieprijzen</li>
+
         </ul>
       </>
     ),
   },
   {
-    question: "Can insulation work be done in winter?",
-    answer: "Yes, we can install insulation all year round. Our materials and techniques are suitable for all weather conditions.",
+    question: "Kan isolatiewerk worden gedaan in de winter?",
+    answer: "Ja, we kunnen isolatiewerk doen in alle seizoenen. Onze materialen en technieken zijn geschikt voor alle weersomstandigheden.",
   },
+
   {
-    question: "Do I need to be home during the work?",
-    answer: "You don&apos;t need to be present all day during the work. However, we do ask you to be available at the start of the workday for final coordination and at the end for a final inspection and handover.",
+    question: "Moet ik thuis zijn tijdens het werk?",
+    answer: "Je hoeft niet elke dag thuis te zijn tijdens het werk. We vragen je echter om je beschikbaar te hebben aan het begin van de werkdag voor final coordinatie en aan het einde voor een final inspectie en overdracht.",
   },
+
 ];
 
 function FAQItem({ question, answer, isOpen, onToggle, index }: { question: string; answer: React.ReactNode; isOpen: boolean; onToggle: () => void; index: number; }) {
@@ -159,12 +171,13 @@ export function FAQSection() {
             className="text-center mb-8"
           >
             <h2 className="text-3xl font-bold mb-4">
-              Frequently Asked Questions
+            Veelgestelde vragen
             </h2>
             <p className="text-muted-foreground">
-              Find answers to common questions about our insulation services
+            Vind antwoorden op veelgestelde vragen over onze isolatiediensten
             </p>
           </motion.div>
+
 
           {/* FAQ List */}
           <div className="divide-y divide-primary/10">
@@ -189,9 +202,9 @@ export function FAQSection() {
             className="mt-12 pt-8 text-center border-t border-primary/10"
           >
             <Link href="#contact" className="text-muted-foreground">
-              Can&apos;t find what you&apos;re looking for? 
+              Kan je niet vinden wat je zoekt? 
               <Link href="#contact" className="text-primary hover:text-primary/80 font-medium ml-2 transition-colors">
-                Contact Us
+                Neem contact op
               </Link>
             </Link>
           </motion.div>
