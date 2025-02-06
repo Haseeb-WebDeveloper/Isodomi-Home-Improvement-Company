@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-
+import Link from "next/link";
 interface FormData {
   // Step 1
   services: {
@@ -66,11 +66,23 @@ const houseTypes = [
   { id: 'twee-onder-een-kap', label: 'Twee-onder-één-kap woning' },
 ];
 
+interface FormErrors {
+  services?: string;
+  street?: string;
+  number?: string;
+  postalCode?: string;
+  houseType?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+}
+
 export function ContactSection() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleSubmit = async () => {
     try {
@@ -102,26 +114,30 @@ export function ContactSection() {
     }
   };
 
-  const validateStep = (step: number) => {
-    const newErrors: { [key: string]: string } = {};
-
-    switch (step) {
+  const validateStep = () => {
+    const newErrors: FormErrors = {};
+    
+    switch (currentStep) {
       case 0:
-        if (!Object.values(formData.services).some(v => v)) {
+        if (!Object.values(formData.services).some(value => value)) {
           newErrors.services = "Selecteer minimaal één service";
         }
         break;
       case 1:
-        if (!formData.street) newErrors.street = "Straatnaam is verplicht";
-        if (!formData.number) newErrors.number = "Huisnummer is verplicht";
-        if (!formData.postalCode) newErrors.postalCode = "Postcode is verplicht";
-        if (!formData.houseType) newErrors.houseType = "Selecteer een type woning";
+        if (!formData.street.trim()) newErrors.street = "Straat is verplicht";
+        if (!formData.number.trim()) newErrors.number = "Huisnummer is verplicht";
+        if (!formData.postalCode.trim()) newErrors.postalCode = "Postcode is verplicht";
+        if (!formData.houseType) newErrors.houseType = "Woningtype is verplicht";
         break;
       case 2:
-        if (!formData.firstName) newErrors.firstName = "Voornaam is verplicht";
-        if (!formData.lastName) newErrors.lastName = "Achternaam is verplicht";
-        if (!formData.email) newErrors.email = "E-mailadres is verplicht";
-        if (!formData.phone) newErrors.phone = "Telefoonnummer is verplicht";
+        if (!formData.firstName.trim()) newErrors.firstName = "Voornaam is verplicht";
+        if (!formData.lastName.trim()) newErrors.lastName = "Achternaam is verplicht";
+        if (!formData.email.trim()) {
+          newErrors.email = "Email is verplicht";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          newErrors.email = "Voer een geldig emailadres in";
+        }
+        if (!formData.phone.trim()) newErrors.phone = "Telefoonnummer is verplicht";
         break;
     }
 
@@ -129,52 +145,20 @@ export function ContactSection() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const StepIndicators = () => (
-    <div className="relative flex justify-between mb-12">
-      {steps.map((step, index) => (
-        <div key={index} className="flex items-center">
-          {/* Connecting Line */}
-          {index > 0 && (
-            <motion.div 
-              className="absolute h-[2px] bg-primary/20"
-              style={{
-                left: `${((index - 1) * 50) + 5}%`,
-                right: `${((steps.length - index - 1) * 50) + 5}%`,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 0
-              }}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: currentStep >= index ? 1 : 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
-          )}
-          
-          {/* Step Circle */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`
-              relative z-10 w-10 h-10 rounded-full flex items-center justify-center
-              transition-colors duration-300
-              ${currentStep >= index ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'}
-            `}
-          >
-            {index + 1}
-          </motion.div>
-        </div>
-      ))}
-    </div>
-  );
+  const handleNext = async () => {
+    if (!validateStep()) return;
 
-  const handleNext = () => {
-    if (validateStep(currentStep)) {
-      if (currentStep === steps.length - 1) {
-        handleSubmit();
-      } else {
-        setCurrentStep(prev => prev + 1);
-      }
+    if (currentStep === steps.length - 1) {
+      handleSubmit();
+    } else {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(prev => prev - 1);
+      setErrors({});
     }
   };
 
@@ -182,67 +166,72 @@ export function ContactSection() {
     switch (currentStep) {
       case 0:
         return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="space-y-4"
-          >
+          <div className="space-y-4">
+            {Object.entries(formData.services).map(([service, isSelected]) => (
+              <label key={service} className="flex items-center space-x-3 p-4 rounded-lg border cursor-pointer hover:bg-accent">
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={(e) => setFormData({
+                    ...formData,
+                    services: {
+                      ...formData.services,
+                      [service]: e.target.checked
+                    }
+                  })}
+                  className="rounded border-gray-300"
+                />
+                <span>{service} *</span>
+              </label>
+            ))}
             {errors.services && (
-              <p className="text-red-500 text-sm">{errors.services}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.services}</p>
             )}
-            <div className="space-y-3">
-              {Object.entries(formData.services).map(([key, value]) => (
-                <label key={key} className="flex items-center space-x-3">
-                  <input
-                    type="checkbox"
-                    checked={value}
-                    onChange={(e) => setFormData({
-                      ...formData,
-                      services: {
-                        ...formData.services,
-                        [key]: e.target.checked
-                      }
-                    })}
-                    className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span className="text-base">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                </label>
-              ))}
-            </div>
-          </motion.div>
+          </div>
         );
 
       case 1:
         return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="space-y-4"
-          >
-            <Input
-              placeholder="Straatnaam"
-              value={formData.street}
-              onChange={(e) => setFormData({ ...formData, street: e.target.value })}
-              className={errors.street ? "border-red-500" : ""}
-            />
-            {errors.street && (
-              <p className="text-red-500 text-sm">{errors.street}</p>
-            )}
-            <Input
-              className="col-span-1"
-              placeholder="Nr"
-              value={formData.number}
-              onChange={(e) => setFormData({ ...formData, number: e.target.value })}
-            />
-            <Input
-              className="col-span-2"
-              placeholder="1234AB"
-              value={formData.postalCode}
-              onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-            />
-
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Straat *
+              </label>
+              <Input
+                value={formData.street}
+                onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+                className={errors.street ? "border-red-500" : ""}
+              />
+              {errors.street && (
+                <p className="text-red-500 text-sm mt-1">{errors.street}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Huisnummer *
+              </label>
+              <Input
+                value={formData.number}
+                onChange={(e) => setFormData({ ...formData, number: e.target.value })}
+                className={errors.number ? "border-red-500" : ""}
+              />
+              {errors.number && (
+                <p className="text-red-500 text-sm mt-1">{errors.number}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Postcode *
+              </label>
+              <Input
+                value={formData.postalCode}
+                onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
+                className={errors.postalCode ? "border-red-500" : ""}
+              />
+              {errors.postalCode && (
+                <p className="text-red-500 text-sm mt-1">{errors.postalCode}</p>
+              )}
+            </div>
             <div className="space-y-3">
               <h3 className="text-lg font-medium">Welk type woning heeft u?</h3>
               <div className="space-y-3">
@@ -261,62 +250,74 @@ export function ContactSection() {
                 ))}
               </div>
             </div>
-          </motion.div>
+            {errors.houseType && (
+              <p className="text-red-500 text-sm mt-1">{errors.houseType}</p>
+            )}
+          </div>
         );
 
       case 2:
         return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="space-y-4"
-          >
-            <Input
-              placeholder="Voornaam"
-              value={formData.firstName}
-              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-              className={errors.firstName ? "border-red-500" : ""}
-            />
-            {errors.firstName && (
-              <p className="text-red-500 text-sm">{errors.firstName}</p>
-            )}
-            <Input
-              placeholder="Achternaam"
-              value={formData.lastName}
-              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-              className={errors.lastName ? "border-red-500" : ""}
-            />
-            {errors.lastName && (
-              <p className="text-red-500 text-sm">{errors.lastName}</p>
-            )}
-            <Input
-              type="email"
-              placeholder="E-mailadres"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={errors.email ? "border-red-500" : ""}
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
-            <Input
-              placeholder="Telefoonnummer"
-
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={errors.phone ? "border-red-500" : ""}
-            />
-            {errors.phone && (
-              <p className="text-red-500 text-sm">{errors.phone}</p>
-            )}
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Voornaam *
+              </label>
+              <Input
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                className={errors.firstName ? "border-red-500" : ""}
+              />
+              {errors.firstName && (
+                <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Achternaam *
+              </label>
+              <Input
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                className={errors.lastName ? "border-red-500" : ""}
+              />
+              {errors.lastName && (
+                <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                E-mailadres *
+              </label>
+              <Input
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className={errors.email ? "border-red-500" : ""}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Telefoonnummer *
+              </label>
+              <Input
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className={errors.phone ? "border-red-500" : ""}
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+              )}
+            </div>
             <Textarea
               placeholder="Aanvullende informatie (optioneel)"
               value={formData.additionalInfo}
               onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
               className="min-h-[100px]"
             />
-          </motion.div>
+          </div>
         );
 
       default:
@@ -329,13 +330,87 @@ export function ContactSection() {
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
           {/* Left Side - Contact Info */}
+          <div className="order-1 md:order-2 w-full max-w-xl mx-auto lg:mx-0">
+            <div className="bg-background rounded-xl shadow-lg p-8 border border-border relative">
+              {/* Subsidy Badge */}
+              {/* <div className="absolute -right-4 top-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-12">
+                <span className="text-sm font-medium">€ Subsidie mogelijk!</span>
+              </div> */}
 
+              {/* Main Title */}
+              <h2 className="text-xl font-semibold text-center mb-6">
+                Gratis offerte aanvragen voor de isolatie van uw woning
+              </h2>
+
+              {/* Step Indicators */}
+              <div className="flex justify-between mb-8">
+                {steps.map((step, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className={`
+                      w-8 h-8 rounded-full flex items-center justify-center
+                      ${index === currentStep ? 'bg-primary text-white' : 'bg-gray-200'}
+                    `}>
+                      {index + 1}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Step Title */}
+              <h3 className="text-lg font-medium mb-6">{steps[currentStep].title}</h3>
+
+              {/* Form Content */}
+              <form onSubmit={(e) => e.preventDefault()}>
+                {renderStepContent()}
+                
+                <div className="mt-6 space-y-4">
+                  <div className="flex gap-3">
+                    {currentStep > 0 && (
+                      <Button
+                        variant="outline"
+                        className="w-full"
+                        onClick={handleBack}
+                        disabled={isLoading}
+                      >
+                        Terug
+                      </Button>
+                    )}
+                    <Button
+                      className="w-full"
+                      onClick={handleNext}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <div className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Verzenden...
+                        </div>
+                      ) : currentStep === steps.length - 1 ? 'Aanvraag verzenden' : 'Volgende'}
+                    </Button>
+                  </div>
+
+                  {/* Houses Count */}
+                  <div className="flex items-center justify-center text-sm text-gray-600">
+                    <svg className="w-4 h-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                    <span>binnen 2 weken een startdatum</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Right Side - Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="space-y-8 lg:sticky lg:top-24"
+            className="space-y-8 lg:sticky lg:top-24 order-2 md:order-1"
           >
             <div>
               <h2 className="text-4xl font-bold mb-6">Laat ons je project starten</h2>
@@ -349,9 +424,9 @@ export function ContactSection() {
               <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
               <ul className="space-y-3">
                 {[
-                  "Oplossing met volledig afgewerkt resultaat",
-                  "Startdatum binnen 2 weken na opnamen",
-                  "Werkzaam in heel Midden-Nederland",
+                  "Oplossing met complete afwerking",
+                  " Startdatum binnen 2 weken",
+                  "Actief in Midden-Nederland",
                   "Subsidie-begeleiding",
                 ].map((item, index) => (
                   <motion.li
@@ -390,9 +465,12 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Telefoon</h3>
-                  <p className="text-muted-foreground">+31 (0) 6 123 456 789</p>
+                  <Link href="tel:+31850604466">
+                    <h3 className="font-semibold mb-1">Telefoon</h3>
+                    <p className="text-muted-foreground">+31850604466</p>
+                  </Link>
                 </div>
+
               </div>
 
               <div className="flex items-start gap-4">
@@ -403,75 +481,15 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-muted-foreground">info@Isodomi.nl</p>
+                  <Link href="mailto:info@Isodomi.nl">
+                    <h3 className="font-semibold mb-1">Email</h3>
+                    <p className="text-muted-foreground">info@Isodomi.nl</p>
+                  </Link>
                 </div>
+
               </div>
             </div>
           </motion.div>
-
-          {/* Right Side - Form */}
-          <div className="w-full max-w-xl mx-auto lg:mx-0">
-            <div className="bg-background rounded-xl shadow-lg p-8 border border-border relative">
-              {/* Subsidy Badge */}
-              {/* <div className="absolute -right-4 top-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform rotate-12">
-                <span className="text-sm font-medium">€ Subsidie mogelijk!</span>
-              </div> */}
-
-              {/* Main Title */}
-              <h2 className="text-xl font-semibold text-center mb-6">
-                Gratis offerte aanvragen voor de isolatie van uw woning
-              </h2>
-
-              {/* Step Indicators */}
-              <div className="flex justify-between mb-8">
-                {steps.map((step, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className={`
-                      w-8 h-8 rounded-full flex items-center justify-center
-                      ${index === currentStep ? 'bg-primary text-white' : 'bg-gray-200'}
-                    `}>
-                      {index + 1}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Step Title */}
-              <h3 className="text-lg font-medium mb-6">{steps[currentStep].title}</h3>
-
-              {/* Form Content */}
-              <form onSubmit={(e) => e.preventDefault()}>
-                {renderStepContent()}
-                
-                <div className="mt-6 space-y-4">
-                  <Button
-                    className="w-full"
-                    onClick={handleNext}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <div className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Verzenden...
-                      </div>
-                    ) : currentStep === steps.length - 1 ? 'Aanvraag verzenden' : 'Volgende'}
-                  </Button>
-
-                  {/* Houses Count */}
-                  <div className="flex items-center justify-center text-sm text-gray-600">
-                    <svg className="w-4 h-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                    </svg>
-                    <span>binnen 2 weken een startdatum</span>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
     </section>

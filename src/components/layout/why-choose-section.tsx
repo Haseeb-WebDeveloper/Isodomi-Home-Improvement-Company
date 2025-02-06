@@ -8,7 +8,9 @@ const features = [
     description: "Geniet van een aangenamer binnenklimaat het hele jaar door",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        <path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/>
+        <path d="M8 12h8"/>
+        <path d="M12 16V8"/>
       </svg>
     ),
   },
@@ -17,10 +19,13 @@ const features = [
     description: "Verhoog de marktwaarde van uw woning met duurzame verbeteringen",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m2 20 2-2m0 0 2-2m-2 2-2-2m2 2 2 2m-2-4v4m-2-2h4" />
-        <path d="M19 9V7a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2" />
-        <path d="M12 9v3m0 0v3m0-3h3m-3 0H9" />
-        <path d="m5 18 6-6m0 0 6-6" />
+        <path d="M3 21h18"/>
+        <path d="M19 21v-8a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8"/>
+        <path d="M13 13h4"/>
+        <path d="M13 17h4"/>
+        <path d="m5 21 8-8v-4"/>
+        <path d="M2 10V3h3v7"/>
+        <path d="M15 5V3h3v7"/>
       </svg>
     ),
   },
@@ -29,10 +34,10 @@ const features = [
     description: "Bespaar significant op uw maandelijkse energierekening",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2v20" />
-        <path d="m17 5-5-3-5 3" />
-        <path d="m17 19-5 3-5-3" />
-        <path d="M20 10c0 6-8 6-8 6s-8 0-8-6" />
+        <path d="M12 2v20"/>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"/>
+        <path d="M16 19h1"/>
+        <path d="M7 5h1"/>
       </svg>
     ),
   },
@@ -41,7 +46,13 @@ const features = [
     description: "Behoud een constante, aangename temperatuur in elk seizoen",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+        <path d="M12 9a4 4 0 0 0-2 7.5"/>
+        <path d="M12 3v2"/>
+        <path d="M6.6 18.4"/>
+        <path d="M20 12h2"/>
+        <path d="M4 12H2"/>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 16v3"/>
       </svg>
     ),
   },

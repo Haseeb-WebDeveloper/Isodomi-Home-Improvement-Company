@@ -6,34 +6,6 @@ const steps = [
   {
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-        <path d="M12 8v4" /><path d="M12 16h.01" />
-      </svg>
-    ),
-    title: "Kwaliteitsgarantie",
-    description: "We werken met professionele teams en hoogwaardige materialen om het beste resultaat te leveren aan onze klanten.",
-  },
-  // {
-  //   icon: (
-  //     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  //       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4 12 14.01l-3-3" />
-  //     </svg>
-  //   ),
-  //   title: "Efficient Execution",
-  //   description: "Thanks to our standardized approach and experienced teams, we complete projects quickly and professionally.",
-  // },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-    title: "Gestandaardiseerde aanpak:",
-    description: " Door onze efficiënte werkwijze en bewezen optimalisatie-pakketten kunnen we projecten, zowel effectief als kwalitatief goed uitvoeren.",
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
       </svg>
     ),
@@ -48,6 +20,16 @@ const steps = [
     ),
     title: "Volledige ontzorging",
     description: "Wij werken met regelmatige updates en duidelijke communicatie gedurende het hele project, zodat u altijd op de hoogte bent van de voortgang.",
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+        <path d="M12 8v4" /><path d="M12 16h.01" />
+      </svg>
+    ),
+    title: "Kwaliteitsgarantie",
+    description: "We werken met professionele teams en hoogwaardige materialen om het beste resultaat te leveren aan onze klanten.",
   },
   // {
   //   icon: (
@@ -84,7 +66,7 @@ export function HowWeWorkSection() {
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}

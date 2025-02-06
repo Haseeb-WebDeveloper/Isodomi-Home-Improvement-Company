@@ -78,14 +78,16 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}          
-          <div className="flex items-center gap-2">
+          <Link href="#hero" className="flex items-center gap-2">
             <Image src="/logo.jpg" alt="Logo" width={100} height={100} className="w-10 h-10" />
             <h1 className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">
               Isodomi
+
             </h1>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
+
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Link
@@ -114,7 +116,7 @@ export function Header() {
               className="hidden md:inline-flex px-8 py-4"
               onClick={(e) => handleNavClick(e as any, "#contact")}
             >
-              Contacteer ons
+              Aan de slag
             </Button>
 
             {/* Mobile Menu Button */}
@@ -169,7 +171,7 @@ export function Header() {
                     className="w-full"
                     onClick={(e) => handleNavClick(e, "#contact")}
                   >
-                    Contacteer ons
+                    Aan de slag
                   </Button>
                 </div>
               </div>

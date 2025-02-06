@@ -43,7 +43,7 @@ export function HeroSection() {
 
           >
             <span className="inline-block py-1.5 px-4 rounded-full border border-primary/20 text-primary font-medium text-sm">
-              Premium bouwoplossingen
+              Premium isolatieoplossingen
             </span>
           </motion.div>
 
@@ -65,9 +65,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl mx-auto"
           >
-            Ervaar uitmuntendheid in de bouw met onze innovatieve oplossingen. 
-            Wij brengen geavanceerde technologie en deskundig vakmanschap samen 
-            uitmuntende resultaten opleveren.
+            Met onze hoogwaardige isolatieoplossingen en vakkundige installatie helpen we huiseigenaren in Midden-Nederland hun energierekening te verlagen en wooncomfort te verhogen
           </motion.p>
 
           <motion.div
@@ -109,7 +107,7 @@ export function HeroSection() {
             className="relative h-[300px] md:h-[400px] mx-auto rounded-2xl overflow-hidden shadow-xl"
           >
             <Image
-              src="/hero.webp"
+              src="/home.png"
               alt="Modern construction project"
               fill
               className="object-cover object-center hover:scale-105 transition-transform duration-700"
@@ -128,36 +126,33 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-4 gap-6 items-center"
         >
-          <div className="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-            <span>Oplossing met volledig afgewerkt resultaat</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span>Startdatum binnen 2 weken na opnamen</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>Werkzaam in heel Midden-Nederland</span>
-          </div>
-
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 12c0 1.2-4 6-9 6s-9-4.8-9-6c0-1.2 4-6 9-6s9 4.8 9 6Z" />
               <circle cx="12" cy="12" r="3" />
             </svg>
-            <span>Subsidie-begeleiding</span>
+            <span className="">Subsidie-begeleiding</span>
+          </div>
+          <div className="flex items-center gap-3 justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <span className="">Oplossing met complete afwerking</span>
+          </div>
+          <div className="flex items-center gap-3 justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span className=""> Startdatum binnen 2 weken</span>
+          </div>
+          <div className="flex items-center gap-3 justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span className="">Actief in Midden-Nederland</span>
           </div>
         </motion.div>
       </div>
