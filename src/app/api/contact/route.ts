@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     // Email to company
     const mailOptions = {
       from: process.env.SENDER_EMAIL,
-      to: "info@renodomi.nl",
+      to: process.env.COMPANY_EMAIL,
       subject: "Nieuwe offerte aanvraag",
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">

@@ -79,9 +79,9 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}          
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="Logo" width={100} height={100} className="w-10 h-10" />
+            <Image src="/logo.jpg" alt="Logo" width={100} height={100} className="w-10 h-10" />
             <h1 className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">
-              Renodomi
+              Isodomi
             </h1>
           </div>
 

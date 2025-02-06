@@ -404,7 +404,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-muted-foreground">info@Renodomi.nl</p>
+                  <p className="text-muted-foreground">info@Isodomi.nl</p>
                 </div>
               </div>
             </div>
