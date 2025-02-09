@@ -422,7 +422,7 @@ export function ContactSection() {
             </div>
 
 
-            {/* Why Contact Us */}
+            {/* Why Contact Ons */}
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
               <ul className="space-y-3">
