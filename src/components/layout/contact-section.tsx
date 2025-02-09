@@ -186,8 +186,9 @@ export function ContactSection() {
                   })}
                   className="rounded border-gray-300"
                 />
-                <span>{service} *</span>
+                <span className="text-foreground">{service} *</span>
               </label>
+
             ))}
             {errors.services && (
               <p className="text-red-500 text-sm mt-1">{errors.services}</p>
@@ -484,9 +485,9 @@ export function ContactSection() {
                   </svg>
                 </div>
                 <div>
-                  <Link href="mailto:info@Isodomi.nl">
+                  <Link href="mailto:info@renodomi.nl">
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@Isodomi.nl</p>
+                    <p className="text-muted-foreground">info@renodomi.nl</p>
                   </Link>
                 </div>
 

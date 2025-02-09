@@ -105,7 +105,7 @@ export function HeroSection() {
             className="relative h-[300px] md:h-[400px] mx-auto rounded-2xl overflow-hidden shadow-xl border border-border"
           >
             <Image
-              src="/Banner.jpg"
+              src="/Banner.avif"
               alt="Modern construction project"
               fill
               className="object-cover object-center hover:scale-105 transition-transform duration-700"

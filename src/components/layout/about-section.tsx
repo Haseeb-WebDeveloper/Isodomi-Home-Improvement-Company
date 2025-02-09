@@ -20,7 +20,7 @@ export function AboutSection() {
           >
             <div className="relative h-[650px] rounded-xl overflow-hidden">
               <Image
-                src="/180m2.jpg"
+                src="/180m2.avif"
                 alt="Professional insulation work"
                 fill
                 className="object-cover"

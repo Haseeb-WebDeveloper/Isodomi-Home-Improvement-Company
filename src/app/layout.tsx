@@ -6,8 +6,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
-  title: "Isodomi - Specialist in insulation",
-  description: "Isodomi is a specialist in insulation. We provide insulation services to homes and businesses across central Netherlands.",
+  title: "Isodomi - Specialist in isolatie",
+  description: "Isodomi is specialist in isolatie. Wij leveren isolatiediensten aan woningen en bedrijven in heel Midden-Nederland.",
 };
 
 export default function RootLayout({

@@ -8,7 +8,7 @@ import Link from "next/link";
 const services = [
   {
     title: "Dakisolatie",
-    image: "/Dakisolatie.jpg",
+    image: "/Dakisolatie.avif",
     features: "Optimaal haalbaar rendement dankzij professionele dakisolatie, uitgevoerd met hoogwaardige materialen en vakkundige installatie inclusief complete afwerking.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -20,7 +20,7 @@ const services = [
   },
   {
     title: "Gevelisolatie",
-    image: "/Gevelisolatie.jpg",
+    image: "/Gevelisolatie.avif",
     features: "Professionele binnengevelisolatie met hoogwaardige isolatiematerialen voor optimale warmtewering en energiebesparing",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -32,7 +32,7 @@ const services = [
   },
   {
     title: "Vloerisolatie",
-    image: "/Vloerisolatie.jpg",
+    image: "/Vloerisolatie.avif",
     features: "Professionele isolatie van vloeren en kruipruimtes maakt uw huis warmer. Met hoogwaardige isolatiematerialen en vakkundige installatie creëren we een comfortabeler leefklimaat.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
