@@ -90,7 +90,7 @@ export function AboutSection() {
               <p className="text-muted-foreground mb-4">
                Bespaar direct op uw energierekening!
               </p>
-              <Link href="/contact">
+              <Link href="#contact">
               <Button size="lg" className="w-full sm:w-auto">
                  Ontvang uw gratis offerte
                 <svg
