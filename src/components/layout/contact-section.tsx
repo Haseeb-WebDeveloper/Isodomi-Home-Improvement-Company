@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
 interface FormData {
   // Step 1
   services: {
@@ -83,6 +85,7 @@ export function ContactSection() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  const router = useRouter();
 
   const handleSubmit = async () => {
     try {
@@ -104,7 +107,9 @@ export function ContactSection() {
 
       if (!response.ok) throw new Error('Failed to send message');
       
-      toast.success("Bedankt! We nemen zo spoedig mogelijk contact met u op.");
+      // Redirect to thank you page instead of showing toast
+      router.push('/thank-you');
+      
       setFormData(initialFormData);
       setCurrentStep(0);
     } catch (error) {

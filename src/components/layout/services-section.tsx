@@ -8,18 +8,8 @@ import Link from "next/link";
 const services = [
   {
     title: "Dakisolatie",
-    image: "/roof-insulation.jpg",
-    features: [
-      "Optimaal haalbaar",
-      "rendement dankzij",
-      "professionele dakisolatie,",
-      "uitgevoerd met ",
-      "hoogwaardige materialen en",
-      "vakkundige installatie",
-      "inclusief complete",
-      "afwerking",
-    ],
-
+    image: "/Dakisolatie.jpg",
+    features: "Optimaal haalbaar rendement dankzij professionele dakisolatie, uitgevoerd met hoogwaardige materialen en vakkundige installatie inclusief complete afwerking.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 20h20" />
@@ -30,16 +20,8 @@ const services = [
   },
   {
     title: "Gevelisolatie",
-    image: "/Facade-insulation.jpg",
-    features: [
-      "Professionele",
-      "binnengevelisolatie met",
-      "hoogwaardige",
-      "isolatiematerialen voor",
-      "optimale warmtewering en",
-      "energiebesparing",
-    ],
-
+    image: "/Gevelisolatie.jpg",
+    features: "Professionele binnengevelisolatie met hoogwaardige isolatiematerialen voor optimale warmtewering en energiebesparing",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect width="18" height="18" x="3" y="3" rx="2" />
@@ -50,17 +32,8 @@ const services = [
   },
   {
     title: "Vloerisolatie",
-    image: "/Floor-Insulation.avif",
-    features: [
-      "Professionele isolatie van",
-      "vloeren en kruipruimtes",
-      "maakt uw huis warmer. Met",
-      "hoogwaardige",
-      "isolatiematerialen en",
-      "vakkundige installatie",
-      "creëren we een",
-      "comfortabeler leefklimaat",
-    ],
+    image: "/Vloerisolatie.jpg",
+    features: "Professionele isolatie van vloeren en kruipruimtes maakt uw huis warmer. Met hoogwaardige isolatiematerialen en vakkundige installatie creëren we een comfortabeler leefklimaat.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect width="18" height="18" x="3" y="3" rx="2" />
@@ -127,33 +100,14 @@ export function ServicesSection() {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                   {/* Features */}
-                  <ul className="">
-                    {service.features.map((feature, idx) => (
-                      <motion.li
-                        key={idx}
+                      <motion.p
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: (index * 0.1) + (idx * 0.1) }}
                         className="flex items-center gap-2  text-muted-foreground"
                       >
-                        {/* <svg
-                          className="w-4 h-4 text-primary flex-shrink-0"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg> */}
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
+                        {service.features}
+                      </motion.p>
                 </div>
                 </div>
 

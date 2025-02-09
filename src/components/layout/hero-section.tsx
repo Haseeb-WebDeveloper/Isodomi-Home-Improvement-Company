@@ -104,10 +104,10 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="relative h-[300px] md:h-[400px] mx-auto rounded-2xl overflow-hidden shadow-xl"
+            className="relative h-[300px] md:h-[400px] mx-auto rounded-2xl overflow-hidden shadow-xl border border-border"
           >
             <Image
-              src="/home.png"
+              src="/Banner.jpg"
               alt="Modern construction project"
               fill
               className="object-cover object-center hover:scale-105 transition-transform duration-700"
