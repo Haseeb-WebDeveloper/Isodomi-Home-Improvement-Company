@@ -8,7 +8,6 @@ import Link from "next/link";
 const services = [
   {
     title: "Dakisolatie",
-    description: "Maximaliseer de efficiëntie met professionele dakisolatie.",
     image: "/roof-insulation.jpg",
     features: [
       "Optimaal haalbaar",
@@ -31,7 +30,6 @@ const services = [
   },
   {
     title: "Gevelisolatie",
-    description: "Effectieve isolatieoplossingen voor uw muren.",
     image: "/Facade-insulation.jpg",
     features: [
       "Professionele",
@@ -52,7 +50,6 @@ const services = [
   },
   {
     title: "Vloerisolatie",
-    description: "Verbeter het comfort met vloer- en kruipruimte-isolatie.",
     image: "/Floor-Insulation.avif",
     features: [
       "Professionele isolatie van",
@@ -91,11 +88,8 @@ export function ServicesSection() {
           className="text-center max-w-2xl mx-auto mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-             Onze diensten
+            Onze Diensten
           </h2>
-          <p className="text-muted-foreground">
-            Professional insulation solutions tailored to your needs. We provide comprehensive services to improve your home's energy efficiency.
-          </p>
         </motion.div>
 
         {/* Services Grid */}
@@ -107,10 +101,12 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative"
+              className="group relative h-full"
             >
               {/* Service Card */}
-              <div className="relative bg-background/50 backdrop-blur-sm rounded-2xl border border-primary/10 overflow-hidden border border-border">
+              <div className="relative bg-background/50 backdrop-blur-sm rounded-2xl border border-primary/10 overflow-hidden border border-border h-full flex flex-col justify-between">
+
+              <div>
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -130,10 +126,8 @@ export function ServicesSection() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
-
                   {/* Features */}
-                  <ul className="space-y-3">
+                  <ul className="">
                     {service.features.map((feature, idx) => (
                       <motion.li
                         key={idx}
@@ -141,7 +135,7 @@ export function ServicesSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: (index * 0.1) + (idx * 0.1) }}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                        className="flex items-center gap-2  text-muted-foreground"
                       >
                         {/* <svg
                           className="w-4 h-4 text-primary flex-shrink-0"
@@ -160,6 +154,7 @@ export function ServicesSection() {
                       </motion.li>
                     ))}
                   </ul>
+                </div>
                 </div>
 
                 {/* Action Button */}

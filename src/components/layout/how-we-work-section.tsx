@@ -28,18 +28,18 @@ const steps = [
         <path d="M12 8v4" /><path d="M12 16h.01" />
       </svg>
     ),
+    title: "Gestandaardiseerde aanpak",
+    description: "Door onze efficiënte werkwijze en bewezen optimalisatie-pakketten kunnen we projecten, zowel effectief als kwalitatief goed uitvoeren.",
+  },
+  {
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
     title: "Kwaliteitsgarantie",
     description: "We werken met professionele teams en hoogwaardige materialen om het beste resultaat te leveren aan onze klanten.",
   },
-  // {
-  //   icon: (
-  //     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  //       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-  //     </svg>
-  //   ),
-  //   title: "Customer Satisfaction",
-  //   description: "We prioritize your satisfaction and ensure that you are happy with the final result.",
-  // },
 ];
 
 export function HowWeWorkSection() {
@@ -61,12 +61,11 @@ export function HowWeWorkSection() {
         >
           <h2 className="text-4xl font-bold mb-6">Onze Werkwijze</h2>
           <p className="text-muted-foreground text-lg">
-          Bij isodomi staat kwaliteit en efficiëntie voorop. Als specialist in isolatie zorgen wij voor verduurzaming en woningverbetering. Dit realiseren wij met behulp van een all-in-one oplossing waarbij we de klant bij het hele proces van A tot Z ontzorgen:
-          </p>
+          Bij isodomi staat kwaliteit en efficiëntie voorop. Als specialist in isolatie zorgen wij voor verduurzaming en woningverbetering. Dit realiseren wij met behulp van een all-in-one oplossing waarbij we de klant bij het hele proces van A tot Z ontzorgen</p>
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}

@@ -413,11 +413,9 @@ export function ContactSection() {
             className="space-y-8 lg:sticky lg:top-24 order-2 md:order-1"
           >
             <div>
-              <h2 className="text-4xl font-bold mb-6">Laat ons je project starten</h2>
-              <p className="text-muted-foreground">
-                Klaar om je huis&apos; energie-efficiëntie te verbeteren? We staan klaar om je te helpen bij elke stap van het proces.
-              </p>
+              <h2 className="text-4xl font-bold mb-6">Vraag direct een vrijblijvende offerte aan</h2>
             </div>
+
 
             {/* Why Contact Us */}
             <div className="space-y-4">
