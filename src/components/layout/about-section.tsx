@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export function AboutSection() {
   return (
@@ -19,7 +20,7 @@ export function AboutSection() {
           >
             <div className="relative h-[650px] rounded-xl overflow-hidden">
               <Image
-                src="/construction-worker.jpg"
+                src="/180m2.jpg"
                 alt="Professional insulation work"
                 fill
                 className="object-cover"
@@ -89,9 +90,11 @@ export function AboutSection() {
               <p className="text-muted-foreground mb-4">
                Bespaar direct op uw energierekening!
               </p>
+              <Link href="/contact">
               <Button size="lg" className="w-full sm:w-auto">
                  Ontvang uw gratis offerte
                 <svg
+
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -107,8 +110,10 @@ export function AboutSection() {
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </Button>
+              </Link>
             </motion.div>
           </motion.div>
+
         </div>
       </div>
     </section>

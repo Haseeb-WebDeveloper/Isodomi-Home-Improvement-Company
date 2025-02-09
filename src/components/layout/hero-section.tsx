@@ -97,8 +97,6 @@ export function HeroSection() {
             </Button>
             </Link>
           </motion.div>
-
-
           {/* Bottom Image Section */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
