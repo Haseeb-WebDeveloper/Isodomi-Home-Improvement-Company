@@ -18,6 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
         <head>
+
+        {/* Google Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E79P4XWTZ"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-5E79P4XWTZ');
+            `,
+          }}
+        />
+
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
