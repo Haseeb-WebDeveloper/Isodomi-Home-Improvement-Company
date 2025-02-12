@@ -77,7 +77,7 @@ export function ServicesSection() {
               className="group relative h-full"
             >
               {/* Service Card */}
-              <div className="relative bg-background/50 backdrop-blur-sm rounded-2xl border border-primary/10 overflow-hidden border border-border h-full flex flex-col justify-between">
+              <div className="relative bg-background/50 backdrop-blur-sm rounded-2xl  overflow-hidden border border-border h-full flex flex-col justify-between">
 
               <div>
                 {/* Image */}
