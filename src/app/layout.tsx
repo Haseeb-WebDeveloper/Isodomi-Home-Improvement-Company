@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ContactPopupProvider } from "@/components/providers/contact-popup-provider";
 
 export const metadata: Metadata = {
   title: "Isodomi - Specialist in isolatie",
@@ -66,9 +67,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          <Footer />
+          <ContactPopupProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ContactPopupProvider>
         </ThemeProvider>
       </body>
     </html>

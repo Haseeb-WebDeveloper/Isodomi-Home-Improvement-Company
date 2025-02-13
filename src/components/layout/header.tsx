@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useContactPopup } from "@/components/providers/contact-popup-provider";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openContactPopup } = useContactPopup();
 
   // Handle scroll effect
   useEffect(() => {
@@ -36,7 +38,6 @@ export function Header() {
   const navItems = [
     { name: "Over ons", href: "#about" },
     { name: "Diensten", href: "#services" },
-    { name: "Contact", href: "#contact" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
@@ -82,32 +83,30 @@ export function Header() {
             <Image src="/logo.jpg" alt="Logo" width={100} height={100} className="w-10 h-10" />
             <h1 className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">
               Isodomi
-
             </h1>
           </Link>
 
           {/* Desktop Navigation */}
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="relative group text-sm font-medium"
+                className={`relative group text-sm font-medium hover:bg-primary/5 px-4 py-2 rounded-md ${activeSection === item.href.replace('#', '') ? 'text-primary' : ''}`}
               >
                 {item.name}
-                <span className="absolute -right-4 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary opacity-0 transition-all duration-300 group-hover:opacity-70 group-hover:-right-6" />
-                
-                {activeSection === item.href.replace('#', '') && (
-                  <motion.span
-                    layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
+               
               </Link>
             ))}
+            <Button
+              variant="contact"
+              className="relative group text-sm font-medium"
+              onClick= {openContactPopup}
+            >
+              Aan de slag
+            </Button>
           </nav>
 
           {/* CTA Button & Mobile Menu Button */}

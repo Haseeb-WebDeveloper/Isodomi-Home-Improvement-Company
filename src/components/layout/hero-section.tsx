@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useContactPopup } from "@/components/providers/contact-popup-provider";
 
 export function HeroSection() {
+  const { openContactPopup } = useContactPopup();
+
   return (
     <>
       <div id="hero" className="mt-20 flex flex-col items-center justify-center overflow-hidden">
@@ -75,7 +78,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
           <Link href="#contact">
-            <Button size="lg" className="text-base min-w-[250px] h-12">
+            <Button  onClick={openContactPopup} size="lg" className="text-base min-w-[250px] h-12">
               Aan de slag
               <motion.svg
                 xmlns="http://www.w3.org/2000/svg"

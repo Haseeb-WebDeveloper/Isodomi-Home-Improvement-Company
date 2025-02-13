@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { cn } from "@/lib/utils";
 
 interface FormData {
   // Step 1
@@ -80,7 +81,12 @@ interface FormErrors {
   phone?: string;
 }
 
-export function ContactSection() {
+interface ContactSectionProps {
+  isPopup?: boolean;
+  onSubmitSuccess?: () => void;
+}
+
+export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps) {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -105,13 +111,21 @@ export function ContactSection() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error('Failed to send message');
-      
-      // Redirect to thank you page instead of showing toast
-      router.push('/thank-you');
-      
-      setFormData(initialFormData);
-      setCurrentStep(0);
+      if (response.ok) {
+        // Clear form
+        setFormData(initialFormData);
+        setCurrentStep(0);
+        
+        // Call onSubmitSuccess if provided (for popup mode)
+        if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
+        
+        // Redirect to thank you page
+        router.push('/thank-you');
+      } else {
+        throw new Error('Failed to send message');
+      }
     } catch (error) {
       toast.error("Er is iets misgegaan. Probeer het later opnieuw.");
     } finally {
@@ -332,7 +346,10 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-foreground/5">
+    <section className={cn(
+      "relative py-24",
+      isPopup && "py-8 px-4"
+    )}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
           {/* Left Side - Contact Info */}
