@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ContactSection } from "@/components/layout/contact-section";
+import { PopUpContactSection } from "@/components/layout/popup-contact-form";
 
 interface ContactPopupProps {
   isOpen: boolean;
@@ -32,7 +32,7 @@ export function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-foreground/80 backdrop-blur-sm z-50"
           />
 
           {/* Popup Content */}
@@ -43,12 +43,12 @@ export function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 overflow-y-auto"
           >
-            <div className="min-h-full flex items-center justify-center p-4">
-              <div className="relative bg-background rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="min-h-full w-fit  mx-auto flex items-center justify-center px-6 py-4">
+              <div className="relative rounded-lg w-full max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-primary/10 hover:scrollbar-thumb-primary/20 scrollbar-track-transparent">
                 {/* Close Button */}
                 <button
                   onClick={onClose}
-                  className="absolute right-4 top-4 p-2 rounded-full hover:bg-accent text-muted-foreground hover:text-accent-foreground transition-colors z-10"
+                  className="absolute right-4 top-4 p-2 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground transition-colors z-10"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ export function ContactPopup({ isOpen, onClose }: ContactPopupProps) {
                 </button>
 
                 {/* Contact Form */}
-                <ContactSection isPopup onSubmitSuccess={onClose} />
+                <PopUpContactSection isPopup onSubmitSuccess={onClose} />
               </div>
             </div>
           </motion.div>

@@ -80,12 +80,12 @@ interface FormErrors {
   phone?: string;
 }
 
-interface ContactSectionProps {
+interface PopUpContactSectionProps {
   isPopup?: boolean;
   onSubmitSuccess?: () => void;
 }
 
-export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps) {
+export function PopUpContactSection({ isPopup, onSubmitSuccess }: PopUpContactSectionProps) {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -345,9 +345,9 @@ export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-foreground/5">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+    <section id="contact" className="relative bg-background/50 px-4 py-6">
+      <div className="container mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Left Side - Contact Info */}
           <div className="order-1 md:order-2 w-full max-w-xl mx-auto lg:mx-0">
             <div className="bg-background rounded-xl shadow-lg p-8 border border-border relative">
@@ -422,91 +422,6 @@ export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps
               </form>
             </div>
           </div>
-
-          {/* Right Side - Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8 lg:sticky lg:top-24 order-2 md:order-1"
-          >
-            <div>
-              <h2 className="text-4xl font-bold mb-6">Vraag direct een vrijblijvende offerte aan</h2>
-            </div>
-
-
-            {/* Why Contact Ons */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
-              <ul className="space-y-3">
-                {[
-                  "Oplossing met complete afwerking",
-                  " Startdatum binnen 2 weken",
-                  "Actief in Midden-Nederland",
-                  "Subsidie-begeleiding",
-                ].map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="flex items-center gap-3 text-muted-foreground"
-                  >
-                    <svg
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                </div>
-                <div>
-                  <Link href="tel:+31850604466">
-                    <h3 className="font-semibold mb-1">Telefoon</h3>
-                    <p className="text-muted-foreground">+31850604466</p>
-                  </Link>
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <path d="m22 6-10 7L2 6" />
-                  </svg>
-                </div>
-                <div>
-                  <Link href="mailto:info@renodomi.nl">
-                    <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-muted-foreground">info@renodomi.nl</p>
-                  </Link>
-                </div>
-
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

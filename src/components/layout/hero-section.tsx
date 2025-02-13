@@ -77,7 +77,6 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
-          <Link href="#contact">
             <Button  onClick={openContactPopup} size="lg" className="text-base min-w-[250px] h-12">
               Aan de slag
               <motion.svg
@@ -98,7 +97,6 @@ export function HeroSection() {
                 <path d="m12 5 7 7-7 7" />
               </motion.svg>
             </Button>
-            </Link>
           </motion.div>
           {/* Bottom Image Section */}
           <motion.div

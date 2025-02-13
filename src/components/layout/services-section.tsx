@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { useContactPopup } from "@/components/providers/contact-popup-provider";
 
 const services = [
   {
@@ -44,12 +44,9 @@ const services = [
 ];
 
 export function ServicesSection() {
+  const { openContactPopup } = useContactPopup();
   return (
     <section id="services" className="relative py-20 overflow-hidden bg-foreground/5">
-      {/* Background Elements */}
-      {/* <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
-      <div className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-background to-transparent" />
-      <div className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-background to-transparent" /> */}
 
       <div className="container relative mx-auto px-4">
         {/* Section Header */}
@@ -113,12 +110,7 @@ export function ServicesSection() {
 
                 {/* Action Button */}
                 <div className="p-6 pt-0">
-                  <Link
-                    href="#contact"
-                    className="flex items-center justify-center px-4 py-2 rounded-md bg-foreground/90 text-background w-full group-hover:bg-primary/80 group-hover:text-primary-foreground transition-colors"
-                  >
-
-
+                  <Button onClick={openContactPopup} className="flex items-center justify-center px-4 py-2 rounded-md bg-foreground/90 text-background w-full group-hover:bg-primary/80 group-hover:text-primary-foreground transition-colors">
                     Contact Ons
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +126,7 @@ export function ServicesSection() {
                       <path d="M5 12h14" />
                       <path d="m12 5 7 7-7 7" />
                     </svg>
-                  </Link>
+                  </Button>
                 </div>
               </div>
 

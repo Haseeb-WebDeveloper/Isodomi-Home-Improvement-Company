@@ -113,7 +113,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Button 
               className="hidden md:inline-flex px-8 py-4"
-              onClick={(e) => handleNavClick(e as any, "#contact")}
+              onClick= {openContactPopup}
             >
               Aan de slag
             </Button>
@@ -167,8 +167,8 @@ export function Header() {
                 ))}
                 <div className="px-4 pt-2">
                   <Button 
+                    onClick={openContactPopup}
                     className="w-full"
-                    onClick={(e) => handleNavClick(e, "#contact")}
                   >
                     Aan de slag
                   </Button>

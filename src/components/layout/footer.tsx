@@ -19,8 +19,6 @@ export function Footer() {
             />
           </Link>
 
-
-
           {/* Company Info */}
           <div className="text-muted-foreground space-y-2">
             <p>© 2025 Isodomi | KvK 94082286 | BTW NL866629191B01</p>

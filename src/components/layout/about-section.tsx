@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { useContactPopup } from "@/components/providers/contact-popup-provider";
 
 export function AboutSection() {
+  const { openContactPopup } = useContactPopup();
   return (
     <section id="about" className="relative pt-16 pb-24">
       <div className="container relative mx-auto px-4">
@@ -90,8 +91,7 @@ export function AboutSection() {
               <p className="text-muted-foreground mb-4">
                Bespaar direct op uw energierekening!
               </p>
-              <Link href="#contact">
-              <Button size="lg" className="w-full sm:w-auto">
+              <Button onClick={openContactPopup} size="lg" className="w-full sm:w-auto">
                  Ontvang uw gratis offerte
                 <svg
 
@@ -110,7 +110,6 @@ export function AboutSection() {
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </Button>
-              </Link>
             </motion.div>
           </motion.div>
 
