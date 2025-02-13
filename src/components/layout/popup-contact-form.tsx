@@ -112,6 +112,9 @@ export function PopUpContactSection({ isPopup, onSubmitSuccess }: PopUpContactSe
 
       if (!response.ok) throw new Error('Failed to send message');
       
+         //   hiding the popup
+         onSubmitSuccess?.();  //this is the function that will be called when the form is submitted
+
       // Redirect to thank you page instead of showing toast
       router.push('/thank-you');
       
