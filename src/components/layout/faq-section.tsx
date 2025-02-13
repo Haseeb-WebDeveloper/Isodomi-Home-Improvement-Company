@@ -64,6 +64,10 @@ const faqs = [
     ),
   },
   {
+    question: "Welke garanties bieden jullie?",
+    answer: "Wij geven garantie op onze werkzaamheden. De exacte garantietermijn is afhankelijk van het type renovatie en de gebruikte materialen. Bij het bouwvoorstel ontvangt u een uitgebreid garantieoverzicht met alle details.",
+  },
+  {
     question: "Moet ik thuis zijn tijdens de werkzaamheden?",
     answer: "Het is niet noodzakelijk om de hele dag thuis te zijn tijdens de werkzaamheden. Wel vragen we u aanwezig te zijn bij de start van het project voor eventuele laatste afstemming en aan het einde voor de oplevering. Tijdens het bouwproces ontvangt u regelmatig updates van de voortgang. Wij zijn voorstander van een transparante communicatie.",
   },
