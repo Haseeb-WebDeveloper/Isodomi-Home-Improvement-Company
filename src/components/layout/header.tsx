@@ -36,6 +36,9 @@ export function Header() {
   }, []);
 
   const navItems = [
+    { name: "renodomi", href: "https://renodomi.nl/" },
+    { name: "duradomi", href: "https://duradomi.nl/" },
+    { name: "isodomi", href: "https://isodomi.nl/" },
     { name: "Over ons", href: "#about" },
     { name: "Diensten", href: "#services" },
   ];
@@ -82,7 +85,7 @@ export function Header() {
           <Link href="#hero" className="flex items-center gap-2">
             <Image src="/logo.jpg" alt="Logo" width={100} height={100} className="w-10 h-10" />
             <h1 className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">
-              Isodomi
+              isodomi
             </h1>
           </Link>
 
@@ -94,7 +97,7 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative group text-sm font-medium hover:bg-primary/5 px-4 py-2 rounded-md ${activeSection === item.href.replace('#', '') ? 'text-primary' : ''}`}
+                className={`relative group text-base font-medium hover:bg-primary/5 px-4 py-2 rounded-md ${activeSection === item.href.replace('#', '') ? 'text-primary' : ''}`}
               >
                 {item.name}
                

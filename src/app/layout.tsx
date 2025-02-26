@@ -7,8 +7,14 @@ import { Footer } from "@/components/layout/footer";
 import { ContactPopupProvider } from "@/components/providers/contact-popup-provider";
 
 export const metadata: Metadata = {
-  title: "Isodomi - Specialist in isolatie",
-  description: "Isodomi is specialist in isolatie. Wij leveren isolatiediensten aan woningen en bedrijven in heel Midden-Nederland.",
+  title: "isodomi - Specialist in isolatie",
+  description: "isodomi is specialist in isolatie. Wij leveren isolatiediensten aan woningen en bedrijven in heel Midden-Nederland.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  verification: {
+    google: "e87iL4jtPIazibq-iRb7xopVKepZNkZ82jOyFf4My3E",
+  },
 };
 
 export default function RootLayout({
@@ -19,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
         <head>
+        <meta name="google-site-verification" content="e87iL4jtPIazibq-iRb7xopVKepZNkZ82jOyFf4My3E" />
 
         {/* Google Tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-5E79P4XWTZ"></script>
