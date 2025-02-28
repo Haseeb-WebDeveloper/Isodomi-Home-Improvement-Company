@@ -19,13 +19,16 @@ export function Header() {
       setIsScrolled(window.scrollY > 20);
 
       // Get all sections
-      const sections = document.querySelectorAll('section[id]');
-      
+      const sections = document.querySelectorAll("section[id]");
+
       // Find the current section
-      sections.forEach(section => {
+      sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = (section as HTMLElement).clientHeight;
-        if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+        if (
+          window.scrollY >= sectionTop - 100 &&
+          window.scrollY < sectionTop + sectionHeight - 100
+        ) {
           setActiveSection(section.id);
         }
       });
@@ -35,23 +38,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "renodomi", href: "https://renodomi.nl/" },
-    { name: "duradomi", href: "https://duradomi.nl/" },
-    { name: "isodomi", href: "https://isodomi.nl/" },
-    { name: "Over ons", href: "#about" },
-    { name: "Diensten", href: "#services" },
-  ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    href: string
+  ) => {
     e.preventDefault();
-    const targetId = href.replace('#', '');
+    const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       // Close mobile menu first
       setIsMobileMenuOpen(false);
-      
+
       // Small delay to allow menu animation to complete
       setTimeout(() => {
         const offset = 80;
@@ -62,7 +60,7 @@ export function Header() {
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }, 300);
     }
@@ -81,9 +79,15 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}          
+          {/* Logo */}
           <Link href="#hero" className="flex items-center gap-2">
-            <Image src="/logo.jpg" alt="Logo" width={100} height={100} className="w-10 h-10" />
+            <Image
+              src="/logo.jpg"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="w-10 h-10"
+            />
             <h1 className="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">
               isodomi
             </h1>
@@ -91,38 +95,56 @@ export function Header() {
 
           {/* Desktop Navigation */}
 
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative group text-base font-medium hover:bg-primary/5 px-4 py-2 rounded-md ${activeSection === item.href.replace('#', '') ? 'text-primary' : ''}`}
-              >
-                {item.name}
-               
-              </Link>
-            ))}
-            <Button
-              variant="contact"
-              className="relative group text-sm font-medium"
-              onClick= {openContactPopup}
+          <nav className="hidden md:flex items-center gap-0">
+            <Link
+              href="https://renodomi.nl/"
+              className={`relative group text-lg font-semibold pr-6 `}
+            >
+              renodomi
+            </Link>
+            <Link
+              href="https://duradomi.nl/"
+              className={`relative group text-lg font-semibold pr-6 `}
+            >
+              duradomi
+            </Link>
+            <Link
+              href="https://isodomi.nl/"
+              className={`relative group text-lg font-semibold pr-6 bg-foreground/5 px-4 py-1 `}
+            >
+              isodomi
+            </Link>
+            <Link
+              href="#about"
+              className={`relative group text-lg font-light pr-6 bg-foreground/5 px-4 py-1 `}
+            >
+              over ons
+            </Link>
+            <Link
+              href="#services"
+              className={`relative group text-lg font-light pr-6 bg-foreground/5 px-4 py-1 `}
+            >
+              diensten
+            </Link>
+            <a
+              className="relative group text-base  font-light cursor-pointer bg-foreground/5 px-4 py-1  rounded-none"
+              onClick={openContactPopup}
             >
               Aan de slag
-            </Button>
+            </a>
           </nav>
 
           {/* CTA Button & Mobile Menu Button */}
           <div className="flex items-center gap-4">
-            <Button 
+            <Button
               className="hidden md:inline-flex px-8 py-4"
-              onClick= {openContactPopup}
+              onClick={openContactPopup}
             >
               Aan de slag
             </Button>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="md:hidden p-2 hover:bg-accent rounded-md"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
@@ -137,7 +159,9 @@ export function Header() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className={`transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`}
+                className={`transition-transform duration-300 ${
+                  isMobileMenuOpen ? "rotate-90" : ""
+                }`}
               >
                 <line x1="3" y1="12" x2="21" y2="12" />
                 <line x1="3" y1="6" x2="21" y2="6" />
@@ -158,21 +182,43 @@ export function Header() {
               className="md:hidden border-t border-primary/10"
             >
               <div className="py-4 space-y-4">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                <Link
+                  href="https://renodomi.nl/"
+                  className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
+                >
+                  renodomi
+                </Link>
+                <Link
+                  href="https://duradomi.nl/"
+                  className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
+                >
+                  duradomi
+                </Link>
+                <div className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors">
+                  isodomi
+                  <div className="pl-4 mt-2 space-y-2">
+                    <Link
+                      href="#about"
+                      className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
+                    >
+                      over ons
+                    </Link>
+                    <Link
+                      href="#services"
+                      className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
+                    >
+                      diensten
+                    </Link>
+                    <a
+                      className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors cursor-pointer"
+                      onClick={openContactPopup}
+                    >
+                      Aan de slag
+                    </a>
+                  </div>
+                </div>
                 <div className="px-4 pt-2">
-                  <Button 
-                    onClick={openContactPopup}
-                    className="w-full"
-                  >
+                  <Button onClick={openContactPopup} className="w-full">
                     Aan de slag
                   </Button>
                 </div>
