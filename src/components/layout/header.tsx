@@ -127,10 +127,10 @@ export function Header() {
               diensten
             </Link>
             <a
-              className="relative group text-base  font-light cursor-pointer bg-foreground/5 px-4 py-1  rounded-none"
+              className="relative group text-lg font-light cursor-pointer bg-foreground/5 px-4 py-1  rounded-none"
               onClick={openContactPopup}
             >
-              Aan de slag
+              aan de slag
             </a>
           </nav>
 
