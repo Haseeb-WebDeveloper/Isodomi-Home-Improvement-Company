@@ -140,7 +140,7 @@ export function Header() {
               className="hidden md:inline-flex px-8 py-4"
               onClick={openContactPopup}
             >
-              Aan de slag
+              aan de slag
             </Button>
 
             {/* Mobile Menu Button */}
@@ -184,12 +184,14 @@ export function Header() {
               <div className="py-4 space-y-4">
                 <Link
                   href="https://renodomi.nl/"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
                 >
                   renodomi
                 </Link>
                 <Link
                   href="https://duradomi.nl/"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
                 >
                   duradomi
@@ -199,12 +201,14 @@ export function Header() {
                   <div className="pl-4 mt-2 space-y-2">
                     <Link
                       href="#about"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
                     >
                       over ons
                     </Link>
                     <Link
                       href="#services"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors"
                     >
                       diensten
@@ -213,13 +217,13 @@ export function Header() {
                       className="block px-4 py-2 text-sm hover:bg-accent rounded-md transition-colors cursor-pointer"
                       onClick={openContactPopup}
                     >
-                      Aan de slag
+                      aan de slag
                     </a>
                   </div>
                 </div>
                 <div className="px-4 pt-2">
                   <Button onClick={openContactPopup} className="w-full">
-                    Aan de slag
+                    aan de slag
                   </Button>
                 </div>
               </div>
