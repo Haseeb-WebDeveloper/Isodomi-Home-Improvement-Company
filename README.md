@@ -27,7 +27,7 @@ A modern, responsive website built for Isodomi, a professional insulation compan
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Haseeb-WebDeveloper/construction-client-website.git
+git clone https://github.com/Haseeb-WebDeveloper/Isodomi-Home-Improvement-Company.git
 ```
 
 2. Install dependencies:
