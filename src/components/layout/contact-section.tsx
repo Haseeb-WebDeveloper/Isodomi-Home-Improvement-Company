@@ -443,7 +443,7 @@ export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps
                 {[
                   "Oplossing met complete afwerking",
                   " Startdatum binnen 2 weken",
-                  "Actief in Midden-Nederland",
+                  "Actief in heel de Randstad",
                   "Subsidie-begeleiding",
                 ].map((item, index) => (
                   <motion.li

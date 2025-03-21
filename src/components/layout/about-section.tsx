@@ -61,7 +61,7 @@ export function AboutSection() {
 
             <div className="space-y-6 text-muted-foreground">
               <p>
-              Isodomi is een gespecialiseerd isolatiebedrijf dat zich richt op het verduurzamen van woningen en bedrijfspanden in heel midden-Nederland. Als expert in dak-, gevel- en vloerisolatie hebben we ruime ervaring in de isolatiebranche.
+              Isodomi is een gespecialiseerd isolatiebedrijf dat zich richt op het verduurzamen van woningen en bedrijfspanden in heel de randstad. Als expert in dak-, gevel- en vloerisolatie hebben we ruime ervaring in de isolatiebranche.
               </p>
               
               <p>

@@ -8,7 +8,7 @@ import { ContactPopupProvider } from "@/components/providers/contact-popup-provi
 
 export const metadata: Metadata = {
   title: "isodomi - Specialist in isolatie",
-  description: "isodomi is specialist in isolatie. Wij leveren isolatiediensten aan woningen en bedrijven in heel Midden-Nederland.",
+  description: "isodomi is specialist in isolatie. Wij leveren isolatiediensten aan woningen en bedrijven in heel de randstad.",
   icons: {
     icon: "/favicon.ico",
   },
