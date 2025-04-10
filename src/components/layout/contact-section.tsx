@@ -441,9 +441,9 @@ export function ContactSection({ isPopup, onSubmitSuccess }: ContactSectionProps
               <h3 className="text-xl font-semibold">Waarom kiezen voor onze diensten?</h3>
               <ul className="space-y-3">
                 {[
-                  "Oplossing met complete afwerking",
-                  " Startdatum binnen 2 weken",
-                  "Actief in heel de Randstad",
+                  "Complete ontzorging",
+                  "Startdatum binnen 2 weken",
+                  "Actief in de hele Randstad",
                   "Subsidie-begeleiding",
                 ].map((item, index) => (
                   <motion.li

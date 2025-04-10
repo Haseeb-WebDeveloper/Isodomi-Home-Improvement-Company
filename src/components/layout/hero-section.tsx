@@ -130,7 +130,7 @@ export function HeroSection() {
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
-            <span className="">Complete renovatie-oplossing</span>
+            <span className="">Complete ontzorging</span>
           </div>
           <div className="flex items-center gap-3 justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -144,7 +144,7 @@ export function HeroSection() {
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span className="">Actief in heel de Randstad</span>
+            <span className="">Actief in de hele Randstad</span>
           </div>
           <div className="flex items-center gap-3 justify-center md:pl-12">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
