@@ -24,7 +24,7 @@ export function Footer() {
             <p>© 2025 Renodomi | KvK 94082286 | BTW NL866629191B01</p>
           </div>
           <div className="text-muted-foreground">
-              <Link className="hover:underline hover:text-primary" href="https://haseebkhan.online/" target="_blank" rel="noopener noreferrer">
+              <Link className="hover:underline hover:text-primary" href="https://www.haseebahmedrazakhan.online/" target="_blank" rel="noopener noreferrer">
                 <p>Developed by Haseeb Khan & Wasif Ali</p>
               </Link>
             </div>

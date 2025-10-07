@@ -125,6 +125,6 @@ Connect with me on:
 - [LinkedIn](https://pk.linkedin.com/in/haseeb-ahmed-raza-khan)
 - [GitHub](https://github.com/Haseeb-WebDeveloper/)
 - [Instagram](https://www.instagram.com/haseeb.ahmed.raza.khan/)
-- [Portfolio](https://haseebkhan.online/)
+- [Portfolio](https://www.haseebahmedrazakhan.online/)
 
 ---
